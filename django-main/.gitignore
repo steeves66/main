@@ -1,0 +1,6 @@
+
+.django_env/
+.pydevproject
+.project
+.py_venv/
+.pydevproject

@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="{% static 'app/dist/font-awesome.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'app/dist/app.css' %}">
+    <link rel="stylesheet" href="{% static 'app/dist/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'app/dist/owl.css' %}">
+
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="{% static 'assets/images/logo/Favicon.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'assets/images/logo/Favicon.png' %}">
+
+    <title>Header Example</title>
+    <!-- <link rel="stylesheet" href="{% static 'app/dist/styles.css' %}"> -->
+</head>
+<body>
+    <div id="wrapper">
+        <div id="pagee" class="clearfix">
+            {% include 'includes/header.html' %}
+
+            {% block 'content' %}
+            {% endblock %}
+        </div>
+    </div>
+
+
+     <!-- Javascript -->
+ 
+     <script src="{% static 'app/js/jquery.min.js' %}"></script>
+     <script src="{% static 'app/js/jquery.easing.js' %}"></script>
+     <script src="{% static 'app/js/jquery.nice-select.min.js' %}"></script>
+     <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'app/js/owl.js' %}"></script>
+     <script src="{% static 'app/js/swiper-bundle.min.js' %}"></script>
+     <script src="{% static 'app/js/swiper.js' %}"></script>
+     <script src="{% static 'app/js/jquery-validate.js' %}"></script>
+     
+     <script src="{% static 'app/js/plugin.js' %}"></script>
+     <script src="{% static 'app/js/shortcodes.js' %}"></script>
+     <script src="{% static 'app/js/main.js' %}"></script>
+     <script src="{% static 'app/js/price-ranger.js' %}"></script>
+</body>
+    

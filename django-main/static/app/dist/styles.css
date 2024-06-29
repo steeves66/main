@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.logo {
+    /* flex: 0 0 20%; */
+    width: 40%;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-section {
+    display: flex;
+    width: 60%;
+    /* flex: 1; */
+    justify-content: space-between;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-icon-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon {
+    margin-right: 5px;
+}
+
+.cl-black {
+    color: #000000;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.pd-x-5 {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.pd-y-5 {
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+/* Sélectionner les span qui ne sont pas des icônes */
+.nav-icon-item:hover span:not(.icon) {
+    color: #e49918; /* Couleur par défaut des textes des éléments de navigation */
+}
+
+.nav-icon-item span:not(.icon) {
+    color: #ffffff; /* Couleur par défaut des textes des éléments de navigation */
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.nav-item-1 {
+    display: flex;
+    width: 40%;
+}
+
+.nav-item-2 {
+    display: flex;
+    width: 60%;
+    gap: 10%;
+}
+
+.nav-item-1 > .nav-item > .nav-icon-item:nth-child(1){
+    margin-right: 20px;
+}
+
+
+/************* import from app.css ************/
+.main-header {
+    z-index: 99;
+    /* width: 100%; */
+    /* height: 78px; */
+    position: relative;
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.0784313725);
+    background-color: #fff;
+  }
+
+/* .main-header.home3 {
+    position: absolute;
+    color: #fff;
+    box-shadow: unset;
+    background-color: unset;
+  } */
+
+/* Header Fixed */
+#header.style-absolute.is-fixed,
+.header.is-fixed {
+  position: fixed;
+  top: -80px;
+  left: 0;
+  width: 100%;
+  box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  background: #fff;
+  border: none;
+  opacity: 1;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#header.style-absolute.is-fixed {
+  background: #120A21;
+}
+
+#wrapper {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    height: 100%;
+  }
