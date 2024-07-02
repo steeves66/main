@@ -4,3 +4,4 @@
 .project
 .py_venv/
 .pydevproject
+.ws_py/
