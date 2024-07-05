@@ -42,7 +42,11 @@ INSTALLED_APPS = [
     'django_feather',
     'django_extensions',
     "django.contrib.staticfiles",
+    
     "users",
+    
+    # signals
+    # 'users.apps.UsersConfig',  # Update the app's reference
     
 ]
 
@@ -136,9 +140,9 @@ AUTH_USER_MODEL = "users.Account"
 
 
 # Allauth settings
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
