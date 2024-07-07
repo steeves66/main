@@ -61,6 +61,9 @@ MIDDLEWARE = [
     
     # Add the account middleware:
     "allauth.account.middleware.AccountMiddleware",
+    
+    # middleware for get the request in signals function
+     'users.middlewares.RequestMiddleware',
 ]
 
 
@@ -160,10 +163,14 @@ AUTHENTICATION_BACKENDS = [
 
 #gmail_send/settings.py
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'klaurent66@gmail.com'
-EMAIL_HOST_PASSWORD = 'xwnmvsvlqgyuxpsw' #past the key or password app here
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+
+########################################## google mail configuration
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'klaurent66@gmail.com'
+# EMAIL_HOST_PASSWORD = 'xwnmvsvlqgyuxpsw' #past the key or password app here
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
 # DEFAULT_FROM_EMAIL = 'default from email'

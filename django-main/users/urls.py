@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import register
+from .views import register_user, registration_success, activate_user
 
 urlpatterns = [
-    path('register/', register, name='register'),
+    path('register/', register_user, name='register_user'),
+    path('register-sucess/', registration_success, name='registration_success'),
+    path('activate/<uidb64>/<token>/', activate_user, name='activate_user'),
 ]
