@@ -7,10 +7,11 @@ from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 from django import dispatch
 from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.forms import AuthenticationForm
+from .middlewares import RequestMiddleware
 
 from .models import Account
 from .forms import UserRegistrationForm
-from .middlewares import RequestMiddleware
 from .utilitaires import create_token
 
 
@@ -29,12 +30,33 @@ def active_user(uidb64, token):
     
 def create_user(data):
     form = UserRegistrationForm(data)
+    # if form.is_valid():
+    #     return user
     if form.is_valid():
-        user = form.save()
+        user = form.save(commit=False)
+        user.set_password(form.cleaned_data['password'])
+        user.save()
         return user
-    else:
-        return form
+    
+    
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
+def login_service(request):
+    form = AuthenticationForm(request, data=request.POST)
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return True
+        else:
+            return False
+    else:
+         return False
+                
+                
 
 def send_welcome_email(user):
     subject = 'Welcome to Our Site'
@@ -73,9 +95,30 @@ def send_email_confirmation(sender, instance, created, **kwargs):
         print("email sended")
         print("******************************************************")
         return True
-    
-    
-    
+
+
+# @receiver(email_validated)
+# def send_email_on_validation(sender, email, **kwargs):
+#     subject = 'Validation de l\'email'
+#     message = f"""
+#     Bonjour,
+#
+#     Votre adresse e-mail {email} a été validée avec succès.
+#
+#     Merci de vous être inscrit(e) sur notre site. Si vous avez des questions, n'hésitez pas à nous contacter.
+#
+#     Cordialement,
+#     L'équipe de support
+#     """
+#     send_mail(
+#         subject,
+#         message,
+#         'votre-email@example.com',
+#         [email],
+#         fail_silently=False,
+#     )
+
+
     
     
     

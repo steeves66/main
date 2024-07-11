@@ -9363,6 +9363,10 @@ a:focus, a:hover {
   color: #F1FAEE;
 }
 
+.text-color-9 {
+  color: #583a0b !important;
+}
+
 path {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;

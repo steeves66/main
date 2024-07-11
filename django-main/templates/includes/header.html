@@ -151,10 +151,10 @@
                                                     </li>
                                                     <li class=""><a href="{% url 'register_user' %}" data-toggle="" data-target="#">S'enregistrer</a></li>
                                                     <li><span>/</span></li>
-                                                    <li class=""><a href="#" data-toggle="modal" data-target="#popup_bid"> Connexion</a></li>
+                                                    <li class=""><a href="{% url 'login_user' %}" data-toggle="" data-target="#popup_bid">Connexion</a></li>
                                                 {% else %}
                                                     <li><img src="{% static "assets/prj_icons/log-out.svg" %}" alt="" width="20" height="20"></li>
-                                                    <li class=""><a href="#" data-toggle="modal" data-target="#popup_bid"> Deconnexion</a></li>
+                                                    <li class=""><a href="{% url 'logout_user' %}" data-toggle="" data-target="#">Deconnexion</a></li>
                                                 {% endif %}
                                             </ul>
                                         </div>

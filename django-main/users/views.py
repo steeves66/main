@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from .forms import UserRegistrationForm
-from .services import create_user, active_user
-from .models import Account
 from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
 
+from .models import Account
+from .forms import UserRegistrationForm, PasswordChangeForm
+from .services import create_user, active_user, login_service
+from .signals import reset_password_signal
 # Create your views here.
 
 def register_user(request):
@@ -15,7 +19,6 @@ def register_user(request):
         return redirect('registration_success')
     else:
         form = UserRegistrationForm()
-    
     return render(request, 'users/register_user_page.html', {'form': form})
 
 
@@ -28,27 +31,84 @@ def activate_user(request, uidb64, token):
     messages.success(request, 'Congratulations! Your account is activated.')
     return redirect('home')
 
-# myapp/views.py
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib import messages
 
-def login_view(request):
+def login_user(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, f'Welcome, {username}!')
-                return redirect('home')  # Redirect to a success page.
-            else:
-                messages.error(request, 'Invalid username or password.')
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(email=email, password=password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'You are now logged in .')
+            return redirect('home')
         else:
-            messages.error(request, 'Invalid username or password.')
+            messages.error(request, 'Invalid login credentials.')
+            return redirect('login_user')
+    return render(request, 'users/login_user_page.html')
+
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('home')
+
+
+
+import pdb
+from .forms import ResetUserPasswordForm
+
+def password_reset(request):
+    if request.method == "POST":
+        form = ResetUserPasswordForm(data=request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            print(f"************* {email}******************")
+            pdb.set_trace()
+            reset_password_signal.send(sender=None, email=email)
+            # update_session_auth_hash(request, form.user)
+            messages.success(request, 'change password link send to your email')
+            return render(request, 'users/password_reset_page.html', {'form': form})
+        else:
+            # return HttpResponse('OK')
+            return render(request, 'test.html')
+            # return render(request, 'users/password_reset_page.html', {'form': form})
     else:
-        form = AuthenticationForm()
-    return render(request, 'myapp/login.html', {'form': form})
+        form = ResetUserPasswordForm()
+        return render(request, 'users/password_reset_page.html', {form: form})
+
+
+def password_reset_done(request, uidb64, token):
+    redirect('password_change')
+
+
+def password_change(request):
+    if request.method == "POST":
+        pass
+        form = PasswordChangeForm(data=request.POST)
+        if form.is_valid():
+            pass
+        #     reset_password_signal.send(sender=None, email=email)
+        #     update_session_auth_hash(request, form.user)
+        #     messages.success(request, 'change password link send to your email')
+        #     return render(request, 'users/password_reset_page.html', {'form': form})
+        # else:
+        #     return render(request, 'users/password_reset_page.html', {'form': form})
+    else:
+        form = ()
+        return render(request, 'users/password_reset_page.html', {form: form})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

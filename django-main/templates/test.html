@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'content' %}
+
+{% if messages %}
+    <div class="popup my-20" id="popup_bid" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content my-20">
+                <div class="modal-body space-y-20 pd-40">
+                    <div class="wrap-modal flex">
+                        <div class="content">
+                            <div class="title-login fs-30 fw-7 lh-45">{{ messages }}</div>
+                        </div>
+                    </div>
+                </div>     
+            </div>
+        </div>
+    </div>
+{% else %}
+<p> test </p>
+{% endif %}
+
+{% endblock %}

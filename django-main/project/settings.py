@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_feather',
     'django_extensions',
     "django.contrib.staticfiles",
+    "debug_toolbar",
     
     "users",
     
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     
     # Add the account middleware:
     "allauth.account.middleware.AccountMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     
     # middleware for get the request in signals function
      'users.middlewares.RequestMiddleware',
@@ -153,6 +155,12 @@ AUTHENTICATION_BACKENDS = [
 
     # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
 ]
 
 
