@@ -58,24 +58,24 @@ def logout_user(request):
 import pdb
 from .forms import ResetUserPasswordForm
 
-def password_reset(request):
-    if request.method == "POST":
-        form = ResetUserPasswordForm(data=request.POST)
-        if form.is_valid():
-            email = request.POST['email']
-            print(f"************* {email}******************")
-            pdb.set_trace()
-            reset_password_signal.send(sender=None, email=email)
-            # update_session_auth_hash(request, form.user)
-            messages.success(request, 'change password link send to your email')
-            return render(request, 'users/password_reset_page.html', {'form': form})
-        else:
-            # return HttpResponse('OK')
-            return render(request, 'test.html')
-            # return render(request, 'users/password_reset_page.html', {'form': form})
-    else:
-        form = ResetUserPasswordForm()
-        return render(request, 'users/password_reset_page.html', {form: form})
+# def password_reset(request):
+#     if request.method == "POST":
+#         form = ResetUserPasswordForm(data=request.POST)
+#         if form.is_valid():
+#             email = request.POST['email']
+#             print(f"************* {email}******************")
+#             pdb.set_trace()
+#             reset_password_signal.send(sender=None, email=email)
+#             # update_session_auth_hash(request, form.user)
+#             messages.success(request, 'change password link send to your email')
+#             return render(request, 'users/password_reset_page.html', {'form': form})
+#         else:
+#             # return HttpResponse('OK')
+#             return render(request, 'test.html')
+#             # return render(request, 'users/password_reset_page.html', {'form': form})
+#     else:
+#         form = ResetUserPasswordForm()
+#         return render(request, 'users/password_reset_page.html', {form: form})
 
 
 def password_reset_done(request, uidb64, token):
