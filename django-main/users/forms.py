@@ -108,7 +108,7 @@ from django.core.validators import validate_email
 class ResetUserPasswordForm(forms.Form):
     email = forms.EmailField()
     
-    def clean_email(self):
+    def clean(self):
         email = self.cleaned_data.get('email')
         if not Account.objects.filter(email="email").first():
             self.add_error('email', "Cet email n'existe pas")  
