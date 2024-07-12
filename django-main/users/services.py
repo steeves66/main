@@ -8,8 +8,9 @@ from django.core.mail import EmailMultiAlternatives
 from django import dispatch
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.forms import AuthenticationForm
-from .middlewares import RequestMiddleware
+from django.utils.encoding import force_bytes
 
+from .middlewares import RequestMiddleware
 from .models import Account
 from .forms import UserRegistrationForm
 from .utilitaires import create_token
@@ -119,7 +120,41 @@ def send_email_confirmation(sender, instance, created, **kwargs):
 #     )
 
 
-    
+def send_email_service(action, **kwargs):
+    if action=='reset_password':
+        user = kwargs.get('user')
+        
+        # Calculate data
+        request = RequestMiddleware.get_request()
+        current_site = get_current_site(request)
+        uid = urlsafe_base64_encode(force_bytes(user.pk))
+        token = default_token_generator.make_token(user)
+        
+        context = {
+            'user': user,
+            'domain': current_site,
+            'uid': uid,
+            'token': token
+        }
+
+        _email_send(subject='Réinitialisation de mot de passe', template='users/emails/user_password_reset_email', data=context)
+        
+        
+        
+
+def _email_send(subject, template, data):
+    email_subject = "Chez Laurent: Activation de votre compte"
+    email_html_message = render_to_string(template, data)
+    email_text_message = strip_tags(email_html_message)
+    to_email = data.get('user').email
+    email = EmailMultiAlternatives(subject, email_text_message, to=[to_email])
+    email.attach_alternative(email_html_message, "text/html")
+    email.content_subtype = "html"  # Main content is now 
+    email.send()
+    print("******************************************************")
+    print("email sended")
+    print("******************************************************")
+    return True    
     
     
     
