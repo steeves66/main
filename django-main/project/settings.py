@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     
     "users",
+    "bien_immobiliers",
     
     # signals
     # 'users.apps.UsersConfig',  # Update the app's reference
