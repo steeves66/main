@@ -23,6 +23,25 @@
     <!-- <link rel="stylesheet" href="{% static 'app/dist/styles.css' %}"> -->
 </head>
 <body>
+
+    <div class="preload preload-container">
+        <div class="boxes ">
+            <div class="box">
+                <div></div> <div></div> <div></div> <div></div>
+            </div>
+            <div class="box">
+                <div></div> <div></div> <div></div> <div></div>
+            </div>
+            <div class="box">
+                <div></div> <div></div> <div></div> <div></div>
+            </div>
+            <div class="box">
+                <div></div> <div></div> <div></div> <div></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- /preload -->
     <div id="wrapper">
         <div id="pagee" class="clearfix">
             {% include 'includes/header.html' %}
@@ -46,6 +65,7 @@
      <script src="{% static 'app/js/swiper.js' %}"></script>
      <script src="{% static 'app/js/jquery-validate.js' %}"></script>
      
+     <script src="{% static 'app/js/jquery.fancybox.js' %}"></script>
      <script src="{% static 'app/js/plugin.js' %}"></script>
      <script src="{% static 'app/js/shortcodes.js' %}"></script>
      <script src="{% static 'app/js/main.js' %}"></script>

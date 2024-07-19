@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     
     "users",
     "bien_immobiliers",
+    "cart",
     
     # signals
     # 'users.apps.UsersConfig',  # Update the app's reference

@@ -7,8 +7,9 @@ from .views import home
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('', home, name='home'),
     path('accounts/', include('allauth.urls')),
     path('users/', include('users.urls')),
-    path('', home, name='home'),
-    
+    path('bien_immobiliers/', include('bien_immobiliers.urls')),
+    path('cart/', include('cart.urls')),
 ] + debug_toolbar_urls()
