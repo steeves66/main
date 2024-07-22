@@ -23,7 +23,7 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, first_name, last_name, email, phone_number, username, password):
+    def create_superuser(self, first_name, last_name, email, username, password, phone_number=None):
         user = self.create_user(
             email=self.normalize_email(email),
             username=username,
@@ -45,7 +45,7 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=100, unique=True)
-    phone_number = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=50, null=True)
 
     # required
     date_joined = models.DateTimeField(auto_now_add=True)
