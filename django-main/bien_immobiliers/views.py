@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.db.models import OuterRef, Subquery, Value, F
 from django.db.models.functions import Concat
 from .models import *
+from django.db.models import Prefetch
 
 
 
@@ -33,8 +34,10 @@ def product_list(request, action):
         piece_id='chb'
     ).values('nombre')[:1]
     
+    filtered_media = Prefetch('bienmedia_set', queryset=BienMedia.objects.filter(media_type__code='img'))
+
     # Main query  bienmedia_set__bien
-    bien_queryset = Bien.objects.prefetch_related('bienmedia_set__media_type').all().annotate(
+    bien_queryset = Bien.objects.prefetch_related(filtered_media).all().annotate(
         depositaire_nom=Subquery(depositaire_subquery),
         depositaire_logo=Subquery(depositaire_logo_subquery),
         chambre=Subquery(chambre_subquery),
