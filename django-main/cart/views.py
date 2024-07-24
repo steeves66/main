@@ -1,12 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from bien_immobiliers.models import Bien
 from .models import Cart, CartItem
+from django.core.exceptions import ObjectDoesNotExist
+
 
 # Create your views here.
 
 
-def cart(request):
-    return render(request, 'cart/cart.html')
+def cart(request, total=0, quantity=0, cart_items=None):
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+        quantity = cart_items.count()
+        total = quantity * 1000
+    except ObjectDoesNotExist():
+        pass
+            
+    context = {
+        'quantity': quantity,
+        'total': total,
+        'cart_items': cart_items
+    }
+    return render(request, 'cart/cart.html', context)
 
 
 def _cart_id(request):
@@ -16,8 +31,8 @@ def _cart_id(request):
     return cart
    
 
-def add_cart(request, bien_id):
-    bien = Bien.objects.get(id=bien_id)
+def add_cart(request, id):
+    bien = Bien.objects.get(id=id)
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.DoesNotExist:
@@ -28,28 +43,12 @@ def add_cart(request, bien_id):
     
     try:
         cart_item = CartItem.objects.get(bien=bien, cart=cart)
-        cart_item.quantity += 1
-        cart_item = save()
     except CartItem.DoesNotExist:
         cart_item = CartItem.objects.create(
-            product = product,
-            quantity = 1,
+            bien = bien,
             cart = cart,
         )
         cart_item.save()
     return redirect('cart')
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         

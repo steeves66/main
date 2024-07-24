@@ -74,7 +74,6 @@ class BienType(models.Model):
         return self.nom
 
     
-
 class Doc(models.Model):
     code = models.CharField(max_length=50, primary_key=True)
     abrege = models.CharField(max_length=50)
@@ -150,6 +149,13 @@ class Bien(models.Model):
     def __str__(self):        
         return self.type_bien.nom
     
+    def localisation(self):
+        bl = BienLocalisation.objects.filter(bien=self).values_list('valeur', flat=True)
+        concatenated_names = " - ".join(bl)
+        if concatenated_names.endswith(" - "):
+            concatenated_names = concatenated_names[:-1]
+        return concatenated_names
+    
 
 class BienLocalisation(models.Model):
     bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
@@ -170,7 +176,7 @@ class BienMedia(models.Model):
     bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
     media_type = models.ForeignKey(MediaType, on_delete=models.SET_NULL, null=True)
     url = models.ImageField(upload_to='medias')
-    nom = models.CharField(max_length=50)
+    nom = models.CharField(max_length=50, null=True, blank=True)
 
     # class Meta:
     #     unique_together = ('bien', 'media_type')
