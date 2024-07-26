@@ -1,0 +1,63 @@
+                        <span class="fw-8">produit id:</span> {{item.id}} <br>
+                        <span class="fw-8">personne morale:</span> {{item.depositaire.personne_morale}} <br>
+                        <span class="fw-8">depositaire nom:</span> {{item.depositaire_nom}} <br>
+                        <span class="fw-8">depositaire logo:</span> {{item.depositaire_logo}} <br>
+                        <span class="fw-8">prix:</span> {{item.prix}}  cfa <br>
+                        <span class="fw-8">pieces:</span> {{item.piece_id}} <br>
+                        <span class="fw-8">chambre nombre:</span> {{item.chambre_nombre}} <br>
+                        <span class="fw-8">image principale:</span> {{item.image_principal}} <br>
+                        <span class="fw-8">chambre:</span> {{item.nb_piece}} <b>pièces</b><br>
+                        <span class="fw-8">operation de:</span> {{item.mode_commercial.nom}} <br>
+                        <span class="fw-8">est vedette:</span> {{item.featured}} <br>
+                        <span class="fw-8">superficie:</span> {{item.superficie}} m2 <br>
+                        {% for media in item.bienmedia_set.all %}
+                            <span class="fw-8">{{media.media_type}}:</span>
+                            <span>{{media.url}}</span> <br>
+                        {% endfor %}
+                        <span class="fw-8">localisation: </span> {{item.localisation}} <br>
+                        <br><br>  
+
+
+
+                        <span class="fw-8">produit id:</span> {{item.id}} <br>
+                        <span class="fw-8">personne morale:</span> {{item.depositaire.personne_morale}} <br>
+                        <span class="fw-8">depositaire nom:</span> {{item.depositaire_nom}} <br>
+                        <span class="fw-8">depositaire logo:</span> {{item.depositaire_logo}} <br>
+                        <span class="fw-8">prix:</span> {{item.prix}}  cfa <br>
+                        <span class="fw-8">pieces:</span> {{item.piece_id}} <br>
+                        <span class="fw-8">chambre nombre:</span> {{item.chambre_nombre}} <br>
+                        <span class="fw-8">image principale:</span> {{item.image_principal}} <br>
+                        <span class="fw-8">chambre:</span> {{item.nb_piece}} <b>pièces</b><br>
+                        <span class="fw-8">operation de:</span> {{item.mode_commercial.nom}} <br>
+                        <span class="fw-8">est vedette:</span> {{item.featured}} <br>
+                        <span class="fw-8">superficie:</span> {{item.superficie}} m2 <br>
+                        {% for media in item.bienmedia_set.all %}
+                            <span class="fw-8">{{media.media_type}}:</span>
+                            <span>{{media.url}}</span> <br>
+                        {% endfor %}
+                        {% include 'includes/card.html' %}
+
+
+
+
+                                    
+                                    <div class="button-search sc-btn-top">
+                                        <a class="sc-button button-top" href="{% url 'add_cart' id=item %}">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+
+
+
+                    
+                                    {% endif %}
+                                    {% if not item.depositaire.personne_morale%}
+                                    <div class="img-author flex align-center">
+                                        {% if item.depositaire.logo%}
+                                        <img src="{{ item.depositaire.logo.url }}" alt="images">
+                                        {% endif %}
+                                        <div class="fs-13 fw-6 link-style-1">
+                                            <a href="#"> {{ item.depositaire.nom }} {{ item.depositaire.prenom }} </a>
+                                        </div>
+                                    </div>
+                                    {% endif %}

@@ -67,7 +67,7 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     
     # middleware for get the request in signals function
-     'users.middlewares.RequestMiddleware',
+    'users.middlewares.RequestMiddleware',
 ]
 
 

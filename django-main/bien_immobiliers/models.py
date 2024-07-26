@@ -3,7 +3,7 @@ from django.db import models
 class Piece(models.Model):
     code = models.CharField(max_length=50, primary_key=True)
     nom = models.CharField(max_length=50)
-    
+
     def __str__(self):
         return self.nom
     
@@ -154,8 +154,8 @@ class Bien(models.Model):
         concatenated_names = " - ".join(bl)
         if concatenated_names.endswith(" - "):
             concatenated_names = concatenated_names[:-1]
-        return concatenated_names
-    
+        return concatenated_names.title()  
+
 
 class BienLocalisation(models.Model):
     bien = models.ForeignKey(Bien, on_delete=models.CASCADE)

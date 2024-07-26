@@ -9017,6 +9017,10 @@ label.error {
   align-items: center;
 }
 
+.align-end {
+  align-items: end;
+}
+
 .text-end {
   text-align: end;
 }
@@ -10329,6 +10333,10 @@ body .dribbble img {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+.mx-2{
+  margin-left: 2px;
+  margin-right: 2px;
+}
 .mx-30{
   margin-left: 30px;
   margin-right: 30px;
@@ -10342,11 +10350,27 @@ body .dribbble img {
   margin-right: 10px;
 }
 
+.mr-20 {
+  margin-right: 20px;
+}
+
+.pr-30 {
+  padding-right: 30px;
+}
+
 .mt-20 {
   margin-top: 20px;
 }
 
 .mt-40 {
+  margin-top: 40px;
+}
+
+.mb-20 {
+  margin-top: 20px;
+}
+
+.mb-40 {
   margin-top: 20px;
 }
 
@@ -10413,3 +10437,8 @@ gray-40 {
   padding: 101px 55px 63px 0px;
 }
 
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
