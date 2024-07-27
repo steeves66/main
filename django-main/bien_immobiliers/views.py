@@ -6,6 +6,7 @@ from django.db.models import OuterRef, Subquery, Value, F
 from django.db.models.functions import Concat
 from .models import *
 from django.db.models import Prefetch
+from django.core.paginator import Paginator
 
 
 
@@ -43,9 +44,13 @@ def product_list(request, action):
         chambre=Subquery(chambre_subquery),
         chambre_nombre=Subquery(chambre_nombre_subquery),
     )
+    paginator = Paginator(bien_queryset, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     count = bien_queryset.count()
     context = {
-        'products': bien_queryset,
+        'products': page_obj,
         'count': count
     }
     return render(request, 'biens_immobiliers/properties-list-sidebar.html', context)

@@ -1,11 +1,35 @@
+
+
+
+
+
+
 <div class="themesflat-pagination clearfix center">
     <ul>
-        <li><a href="#" class="page-numbers style"><i class="far fa-angle-left"></i></a></li>
-        <li><a href="#" class="page-numbers">1</a></li>
-        <li><a href="#" class="page-numbers">2</a></li>
-        <li><a href="#" class="page-numbers current">3</a></li>
-        <li><a href="#" class="page-numbers">4</a></li>
-        <li><a href="#" class="page-numbers">...</a></li>
-        <li><a href="#" class="page-numbers style"><i class="far fa-angle-right"></i></a></li>
+        {% if products.has_previous %}
+            <li><a href="?page={{ products.previous_page_number }}" class="page-numbers style"><i class="far fa-angle-left"></i></a></li>
+        {% else %}
+            <li><a class="page-numbers style"><i class="far fa-angle-left"></i>
+        {% endif %}
+
+        {% for i in products.paginator.page_range %}
+            {% if products.number == i %}
+                <li><a class="page-numbers current">{{i}}</a></li>
+            {% else %}
+                <li><a href="?page={{ i }}" class="page-numbers">{{i}}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if products.has_next %}
+            <li><a href="?page={{ products.next_page_number }}" class="page-numbers style"><i class="far fa-angle-right"></i></a></li>
+        {% else %}
+            <li><a class="page-numbers style"><i class="far fa-angle-right"></i>
+        {% endif %}
     </ul>
 </div>
+
+
+
+
+
+
