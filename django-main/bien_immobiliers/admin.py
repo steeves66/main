@@ -52,6 +52,7 @@ class BienAdmin(admin.ModelAdmin):
         ('biens', {'fields': ('type_bien', 'type_maison', 'nb_piece', 'utilisation', 'superficie', 'superficie_habitable', 'standing',)}),
         ('Coût', {'fields': ('mode_commercial', 'prix', )}),
         ('Bien immobiliers', {'fields': ('promotion_immobiliere', 'apport_initial', 'cout_dossier',)}),
+        ('Immeuble', {'fields': ('nb_etage', 'nb_appartements',)}),
         ('Statuts', {'fields': ('featured', 'visible', 'statut',)}),
         ('Images', {'fields': ('image_principal', 'plan_principal', 'video_visite',)}),
         )

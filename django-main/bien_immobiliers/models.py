@@ -145,6 +145,8 @@ class Bien(models.Model):
     utilisation = models.ForeignKey(Utilisation, on_delete=models.CASCADE, null=True, blank=True)
     type_maison = models.ForeignKey(TypeMaison, on_delete=models.SET_NULL, null=True, blank=True)
     nb_piece = models.IntegerField(null=True, blank=True)
+    nb_etage = models.IntegerField(null=True, blank=True)             # pour les immeubles
+    nb_appartements = models.IntegerField(null=True, blank=True)      # pour les immeubles
     
     def __str__(self):        
         return self.type_bien.nom

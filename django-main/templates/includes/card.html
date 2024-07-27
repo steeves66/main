@@ -1,77 +1,92 @@
 {% load static %}
-                <div class="post">
-                    <div class="wrap-list ">
-                        <div class="box box-dream flex hv-one">
-                            <div class="image-group relative ">
-                                <span class="featured fs-12 fw-6">Featured</span>
-                                <span class="featured style fs-12 fw-6">For sale</span>
-                                <span class="icon-bookmark"><i class="far fa-bookmark"></i></span>
-                                <div class="swiper-container noo carousel-2 img-style">
-                                    <a href="property-detail-v1.html" class="icon-plus"><img
-                                            src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
-                                    <div class="swiper-wrapper">
-                                        <a href="{% url 'product_details' id=item %}">
-                                        <div class="swiper-slide">
-                                                <img src="{{ item.image_principal.url}}" alt="images">
-                                        </div>
-                                        {% for media in item.bienmedia_set.all %}
-                                            <div class="swiper-slide">
-                                                    <img src="{{media.url.url}}" alt="images">
-                                            </div>
-                                        {% endfor %}
-                                        </a>
-                                    </div>
-                                    <div class="pagi2">
-                                        <div class="swiper-pagination2"> </div>
-                                    </div>
-                                    <div class="swiper-button-next2 "><i class="fal fa-arrow-right"></i></div>
-                                    <div class="swiper-button-prev2 "><i class="fal fa-arrow-left"></i> </div>
-                                </div>
-                            </div>
-                            <div class="content">
-                                <h3 class="link-style-1">
-                                    <a href="{% url 'product_details' id=item %}">
-                                    {% if item.type_bien.code == 'msn' %}
-                                        {{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces
-                                    {% endif %}
 
-                                    {{item.type_bien.nom|capfirst}}
-                                    </a>
-                                </h3>
-                                <div class="text-address">
-                                    <p class="p-12">{{item.localisation|capfirst}} {% if item.type_bien.code == 'msn' %} {{ item.nb_piece }} {% endif %}</p>
-                                </div>
-                                <div class="money fs-20 fw-8 font-2 text-color-3"><a href="property-detail-v1.html">{{ item.prix}} FCFA</a>
-                                </div>
-                                <div class="flex justify-space align-center">
-                                    <div class="icon-box">
-                                        {% if item.type_bien.code == 'msn' %}
-                                        <div class="icons icon-1 flex"><span class="fw-6 p-12">Chambre: </span><span class="p-12">4</span></div>
-                                        <div class="icons icon-2 flex"><span class="fw-6 p-12">salle d'eau: </span><span class="p-12">2</span></div>
-                                        <div class="icons icon-3 flex"><span class="fw-6 p-12">Superficie: </span><span class="p-12">{{ item.superficie }} m<sup>2</sup> </span></div>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                <div class="img-box flex justify-space align-center">
-                                    <div class="img-author flex align-center">
-                                        {% if item.depositaire.logo %}
-                                        <img src="{{ item.depositaire.logo.url }}" alt="images">
-                                        {% endif %}
-                                        <div class="fs-13 fw-6 link-style-1">
-                                            <a href="#"> {{ item.depositaire.nom }} {% if item.depositaire.personne_morale %} {{ item.depositaire.prenom }} {% endif %} </a>
-                                        </div>
-                                    </div>
-                                    <a class="" href="{% url 'product_details' id=1 %}">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5 14L2 11M2 11L5 8M2 11H11M11 2L14 5M14 5L11 8M14 5H5"
-                                                stroke="#1C1C1E" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </svg>
-                                        Details
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
+<div class="box box-dream flex hv-one">
+    <div class="image-group relative ">
+        {% if item.featured %}
+        <span class="featured fs-12 fw-6">{{ item.featured }}</span>   
+        {% endif %} 
+        <span class="featured style fs-12 fw-6">{{ item.mode_commercial }}</span>
+        <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
+        <div class="swiper-container noo carousel-2 img-style" >    
+            <a href="property-detail-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+            <div class="swiper-wrapper ">
+
+                <div class="swiper-slide"><img src="{{item.image_principal.url}}" alt="images"></div>
+                {% for media in item.bienmedia_set.all %}
+                <div class="swiper-slide">
+                    <img src="{{media.url.url}}" alt="images">
+                </div>
+                {% endfor %}
+            </div>
+            <div class="pagi2"><div class="swiper-pagination2" >  </div> </div>
+            <div class="swiper-button-next2 "><i class="fal fa-arrow-right"></i></div>
+            <div class="swiper-button-prev2 "><i class="fal fa-arrow-left"></i> </div>                                        
+        </div>
+    </div>
+    <div class="content">
+        <h3 class="link-style-1">
+            <a href="property-detail-v1.html">
+                {% if item.type_bien.code == 'msn' %}
+                {{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces
+                {% endif %}
+
+                {{item.type_bien.nom|capfirst}}
+            </a> 
+        </h3>
+        <div class="text-address">
+            <p class="p-12">{{item.localisation|capfirst}} {% if item.type_bien.code == 'msn' %} {{ item.nb_piece }} {% endif %}
+            </p>
+        </div>
+        <div class="money fs-20 fw-8 font-2 text-color-3"><a href="property-detail-v1.html">{{ item.prix}} F</a></div>  
+        <div class="icon-box">
+            {% if item.type_bien.code == 'msn' %}
+            <div class="icons icon-1 flex"><span>Beds: </span><span class="fw-6">4</span></div>
+            <div class="icons icon-2 flex"><span>Baths: </span><span class="fw-6">2</span></div>
+            <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150 m<sup>2</sup> </span></div>
+            {% endif %}
+
+            {% if item.type_bien.code == 'imb' %}
+            <div class="icons icon-1 flex"><span>level: </span><span class="fw-6">4</span></div>
+            <div class="icons icon-2 flex"><span>appartment: </span><span class="fw-6">2</span></div>
+            <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150 m<sup>2</sup> </span></div>
+            {% endif %}
+
+            {% if item.type_bien.code == 'terr' %}
+            <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150 m<sup>2</sup> </span></div>
+            {% endif %}
+        </div>
+        <div class="img-box flex justify-space align-center">
+            <a  style="display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            width: 100%; 
+            height: 2.5rem; 
+            margin-bottom: 25px; 
+            padding: 10 5 10 5px; 
+            border: #a26914;
+            border-radius: 10px;
+            color: white; 
+            font-weight: bold;
+            background-color: #ffa920;" href="{% url 'add_cart' product_id=item.id %}">
+            Ajouter aux maisons à visiter
+        </a>  
+    </div>
+    <div class="img-box flex justify-space align-center">
+
+        <div class="img-author flex align-center">
+            {% if item.depositaire.logo %}
+            <img src="{{item.depositaire.logo.url }}" alt="images">
+            {% endif %}
+            <div class="fs-13 fw-6 link-style-1">
+                <a href="#">{{ item.depositaire.nom }} {% if item.depositaire.personne_morale %} {{ item.depositaire.prenom }} {% endif %} </a>
+            </div>
+        </div>
+        
+        <a class="icon-repeat">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 14L2 11M2 11L5 8M2 11H11M11 2L14 5M14 5L11 8M14 5H5" stroke="#1C1C1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </div>                                           
+</div>
+</div>
