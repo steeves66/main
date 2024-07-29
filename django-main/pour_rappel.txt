@@ -1,0 +1,8 @@
+
+
+**** taille des imges
+pour card: 404 * 428
+pour details: 471 * 338
+
+***** icon immobiliers
+	30 * 30

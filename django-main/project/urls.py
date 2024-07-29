@@ -12,8 +12,8 @@ urlpatterns = [
     path('', home, name='home'),
     path('accounts/', include('allauth.urls')),
     path('users/', include('users.urls')),
-    path('bien_immobiliers/', include('bien_immobiliers.urls')),
-    path('cart/', include('cart.urls')),
+    path('biens/', include('bien_immobiliers.urls')),
+    path('cart/', include('cart.urls'))
 ] + debug_toolbar_urls()
 
 if settings.DEBUG:

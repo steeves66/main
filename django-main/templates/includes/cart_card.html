@@ -1,0 +1,86 @@
+{% load static %}
+
+<div class="box box-dream flex hv-one">
+    <div class="image-group relative ">
+        {% if item.bien.featured %}
+        <span class="featured fs-12 fw-6">Coup de coeur</span>  
+        {% endif %}
+        <span class="featured style fs-12 fw-6">{{ item.bien.mode_commercial}}</span>
+        <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
+        <div class="swiper-container noo carousel-2 img-style" >    
+            <a href="property-detail-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+            <div class="swiper-wrapper ">
+                <div class="swiper-slide"><img src="{{ item.bien.image_principal.url }}" alt="images"></div>
+                {% for media in item.bien.bienmedia_set.all %}
+                <div class="swiper-slide"><img src="{{ media.url.url }}" alt="images"></div>
+                {% endfor %}
+            </div>
+            <div class="pagi2"><div class="swiper-pagination2" >  </div> </div>
+            <div class="swiper-button-next2 "><i class="fal fa-arrow-right"></i></div>
+            <div class="swiper-button-prev2 "><i class="fal fa-arrow-left"></i> </div>                                        
+        </div>
+    </div>
+    <div class="content">
+        <h3 class="link-style-1"><a href="property-detail-v1.html">
+                {% if item.bien.type_bien.code == 'msn' %}
+                {{ item.bien.type_maison.nom|capfirst }} - {{ item.bien.nb_piece }} pièces
+                {% endif %}
+
+                {{item.bien.type_bien.nom|capfirst}}</a> 
+        </h3>
+        <div class="text-address">
+            <p class="p-12">{{item.bien.localisation|capfirst}} {% if item.bien.type_bien.code == 'msn' %} {{ item.bien.nb_piece }} {% endif %}</p>
+        </div>
+        <div class="money fs-20 fw-8 font-2 text-color-3"><a href="property-detail-v1.html">F {{item.bien.prix}}</a></div>  
+        <div class="icon-box">
+            {% if item.bien.type_bien.code == 'msn' %}
+            <div class="icons icon-1 flex"><span>Beds: </span><span class="fw-6">4</span></div>
+            <div class="icons icon-2 flex"><span>Baths: </span><span class="fw-6">2</span></div>
+            <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">{{ item.bien.superficie}} m<sup>2</sup> </span></div>
+            {% endif %}
+
+            {% if item.bien.type_bien.code == 'imb' %}
+            <div class="icons icon-1 flex"><span>level: </span><span class="fw-6">4</span></div>
+            <div class="icons icon-2 flex"><span>appartment: </span><span class="fw-6">2</span></div>
+            <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">{{ item.bien.superficie}} m<sup>2</sup> </span></div>
+            {% endif %}
+
+            {% if item.bien.type_bien.code == 'terr' %}
+            <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">{{ item.bien.superficie}} m<sup>2</sup> </span></div>
+            {% endif %}
+        </div>   
+        <div class="img-box flex justify-space align-center">
+
+            <div class="img-author flex align-center">
+                {% if item.bien.depositaire.logo %}
+                <img src="{{item.bien.depositaire.logo.url }}" alt="images">
+                {% endif %}
+                <div class="fs-13 fw-6 link-style-1">
+                    <a href="#">{{ item.bien.depositaire.nom }} 
+                    {% if item.bien.depositaire.personne_morale %} 
+                        {{ item.bien.depositaire.prenom }} 
+                    {% endif %} </a>
+                </div>
+            </div>
+            <a href="{% url 'remove' product_id=item.bien.id %}" class="flex align-center justify-space" href="" style="color: white; 
+            height: 2.5rem;
+            padding: 5px 10px; 
+            border: 1px;
+            border-color: red;
+            background-color: red;
+            border-radius: 10px;
+            font-weight: bold;">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 14L2 11M2 11L5 8M2 11H11M11 2L14 5M14 5L11 8M14 5H5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="margin-left: 10px;">Supprimer</span>
+            </a>
+<!--             <a class="icon-repeat">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 14L2 11M2 11L5 8M2 11H11M11 2L14 5M14 5L11 8M14 5H5" stroke="#1C1C1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Supprimer
+            </a> -->
+        </div>                                           
+    </div>
+</div>

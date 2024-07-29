@@ -179,6 +179,7 @@ class BienMedia(models.Model):
     media_type = models.ForeignKey(MediaType, on_delete=models.SET_NULL, null=True)
     url = models.ImageField(upload_to='medias')
     nom = models.CharField(max_length=50, null=True, blank=True)
+    detail = models.BooleanField(default=False, null=True, blank=True)
 
     # class Meta:
     #     unique_together = ('bien', 'media_type')

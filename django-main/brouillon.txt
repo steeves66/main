@@ -11,8 +11,8 @@
                         <span class="fw-8">est vedette:</span> {{item.featured}} <br>
                         <span class="fw-8">superficie:</span> {{item.superficie}} m2 <br>
                         {% for media in item.bienmedia_set.all %}
-                            <span class="fw-8">{{media.media_type}}:</span>
-                            <span>{{media.url}}</span> <br>
+                        <span class="fw-8">{{media.media_type}}:</span>
+                        <span>{{media.url}}</span> <br>
                         {% endfor %}
                         <span class="fw-8">localisation: </span> {{item.localisation}} <br>
                         <br><br>  
@@ -32,61 +32,91 @@
                         <span class="fw-8">est vedette:</span> {{item.featured}} <br>
                         <span class="fw-8">superficie:</span> {{item.superficie}} m2 <br>
                         {% for media in item.bienmedia_set.all %}
-                            <span class="fw-8">{{media.media_type}}:</span>
-                            <span>{{media.url}}</span> <br>
+                        <span class="fw-8">{{media.media_type}}:</span>
+                        <span>{{media.url}}</span> <br>
                         {% endfor %}
                         {% include 'includes/card.html' %}
 
 
 
 
-                                    
-                                    <div class="button-search sc-btn-top">
-                                        <a class="sc-button button-top" href="{% url 'add_cart' id=item %}">
-                                            <span>Add to Cart</span>
-                                        </a>
-                                    </div>
 
-
-
-                    
-                                    {% endif %}
-                                    {% if not item.depositaire.personne_morale%}
-                                    <div class="img-author flex align-center">
-                                        {% if item.depositaire.logo%}
-                                        <img src="{{ item.depositaire.logo.url }}" alt="images">
-                                        {% endif %}
-                                        <div class="fs-13 fw-6 link-style-1">
-                                            <a href="#"> {{ item.depositaire.nom }} {{ item.depositaire.prenom }} </a>
-                                        </div>
-                                    </div>
-                                    {% endif %}
+                        <div class="button-search sc-btn-top">
+                            <a class="sc-button button-top" href="{% url 'add_cart' id=item %}">
+                                <span>Add to Cart</span>
+                            </a>
+                        </div>
 
 
 
 
-<!--Pagination-->
-<div class="container p-4">
-    <div class="pagination justify-content-center">
-        {% if movies.has_previous %}
-            <li><a href="?page={{ movies.previous_page_number }}">&laquo;</a></li>
-        {% else %}
-            <li class="disabled"><span>&laquo;</span></li>
-        {% endif %}
+                        {% endif %}
+                        {% if not item.depositaire.personne_morale%}
+                        <div class="img-author flex align-center">
+                            {% if item.depositaire.logo%}
+                            <img src="{{ item.depositaire.logo.url }}" alt="images">
+                            {% endif %}
+                            <div class="fs-13 fw-6 link-style-1">
+                                <a href="#"> {{ item.depositaire.nom }} {{ item.depositaire.prenom }} </a>
+                            </div>
+                        </div>
+                        {% endif %}
 
-        {% for i in movies.paginator.page_range %}
-            {% if movies.number == i %}
-                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-            {% else %}
-                 <li><a href="?page={{ i }}">{{ i }}</a></li>
-            {% endif %}
-        {% endfor %}
 
-        {% if movies.has_next %}
-            <li><a href="?page={{ movies.next_page_number }}">&raquo;</a></li>
-        {% else %}
-            <li class="disabled"><span>&raquo;</span></li>
-        {% endif %}
-  </div>
-</div>
-    <!--end of Pagination-->
+
+
+                        <!--Pagination-->
+                        <div class="container p-4">
+                            <div class="pagination justify-content-center">
+                                {% if movies.has_previous %}
+                                <li><a href="?page={{ movies.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                <li class="disabled"><span>&laquo;</span></li>
+                                {% endif %}
+
+                                {% for i in movies.paginator.page_range %}
+                                {% if movies.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                                {% endfor %}
+
+                                {% if movies.has_next %}
+                                <li><a href="?page={{ movies.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                <li class="disabled"><span>&raquo;</span></li>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!--end of Pagination-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
