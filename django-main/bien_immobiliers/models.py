@@ -38,6 +38,16 @@ class TypeContact(models.Model):
     
     def __str__(self):
         return self.nom
+
+
+class Niveau(models.Model):
+    code = models.CharField(max_length=50, primary_key=True)
+    nom = models.CharField(max_length=50)
+
+    def __init__(self, arg):
+        return self.nom
+        
+        
     
 
 class Depositaire(models.Model):
@@ -147,6 +157,7 @@ class Bien(models.Model):
     nb_piece = models.IntegerField(null=True, blank=True)
     nb_etage = models.IntegerField(null=True, blank=True)             # pour les immeubles
     nb_appartements = models.IntegerField(null=True, blank=True)      # pour les immeubles
+    description = models.TextField(null=True, blank=True)
     
     def __str__(self):        
         return self.type_bien.nom
@@ -169,6 +180,10 @@ class BienPiece(models.Model):
     bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
     piece = models.ForeignKey(Piece, on_delete=models.CASCADE)
     nombre = models.IntegerField()
+    superficie = models.FloatField(null=True, blank=True)
+    interieur = models.BooleanField(default=True)
+    description = models.TextField(null=True, blank=True)
+    niveau = models.ForeignKey(Niveau, on_delete=models.CASCADE, null=True, blank=True)
 
     # class Meta:
     #     unique_together = ('bien', 'piece')
