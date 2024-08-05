@@ -56,4 +56,4 @@ def product_list(request, action):
     return render(request, 'biens_immobiliers/properties-list-sidebar.html', context)
 
 def product_details(request, product_id):
-    return render(request, 'biens_immobiliers/property-detail.html')
+    return render(request, 'biens_immobiliers/property-detail-v2.html')

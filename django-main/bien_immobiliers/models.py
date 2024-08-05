@@ -44,7 +44,7 @@ class Niveau(models.Model):
     code = models.CharField(max_length=50, primary_key=True)
     nom = models.CharField(max_length=50)
 
-    def __init__(self, arg):
+    def __str__(self):
         return self.nom
         
         
@@ -132,28 +132,28 @@ class Bien(models.Model):
     superficie = models.FloatField(null=True, blank=True)
     superficie_habitable = models.FloatField(null=True, blank=True)
     visible = models.BooleanField()
-    statut = models.ForeignKey(Statut, on_delete=models.SET_NULL, null=True, blank=True)
+    statut = models.ForeignKey(Statut, on_delete=models.SET_NULL, null=True, blank=True, related_name="biens")
     #type_terrain = models.CharField(max_length=50)
     prix = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     image_principal = models.ImageField(upload_to='biens/photos', null=True, blank=True)
     plan_principal = models.ImageField(upload_to='biens/plans', null=True, blank=True)
     video_visite = models.ImageField(upload_to='biens/videos', null=True, blank=True)
-    standing = models.ForeignKey(Standing, on_delete=models.SET_NULL, null=True, blank=True)
+    standing = models.ForeignKey(Standing, on_delete=models.SET_NULL, null=True, blank=True, related_name="biens")
     date_ajout = models.DateField(auto_now_add=True)
     date_modif = models.DateField(auto_now=True)
     cout_dossier = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     apport_initial = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    type_bien = models.ForeignKey(BienType, on_delete=models.SET_NULL, null=True, blank=True)
-    mode_commercial = models.ForeignKey(ModeCommercial, on_delete=models.SET_NULL, null=True, blank=True)
-    depositaire = models.ForeignKey(Depositaire, on_delete=models.SET_NULL, null=True)
+    type_bien = models.ForeignKey(BienType, on_delete=models.SET_NULL, null=True, blank=True, related_name="biens")
+    mode_commercial = models.ForeignKey(ModeCommercial, on_delete=models.SET_NULL, null=True, blank=True, related_name="biens")
+    depositaire = models.ForeignKey(Depositaire, on_delete=models.SET_NULL, null=True, related_name="biens")
     pieces = models.ManyToManyField(Piece, through='BienPiece')
     medias = models.ManyToManyField(MediaType, through='BienMedia')
     docs = models.ManyToManyField(Doc, through='BienDoc')
     localisation = models.ManyToManyField(LocalisationType, through='BienLocalisation')
     promotion_immobiliere = models.BooleanField(default=False)         # if bien immobilier
     featured = models.BooleanField(default=False)
-    utilisation = models.ForeignKey(Utilisation, on_delete=models.CASCADE, null=True, blank=True)
-    type_maison = models.ForeignKey(TypeMaison, on_delete=models.SET_NULL, null=True, blank=True)
+    utilisation = models.ForeignKey(Utilisation, on_delete=models.CASCADE, null=True, blank=True, related_name="biens")
+    type_maison = models.ForeignKey(TypeMaison, on_delete=models.SET_NULL, null=True, blank=True, related_name="biens")
     nb_piece = models.IntegerField(null=True, blank=True)
     nb_etage = models.IntegerField(null=True, blank=True)             # pour les immeubles
     nb_appartements = models.IntegerField(null=True, blank=True)      # pour les immeubles
@@ -194,7 +194,8 @@ class BienMedia(models.Model):
     media_type = models.ForeignKey(MediaType, on_delete=models.SET_NULL, null=True)
     url = models.ImageField(upload_to='medias')
     nom = models.CharField(max_length=50, null=True, blank=True)
-    detail = models.BooleanField(default=False, null=True, blank=True)
+    detail = models.BooleanField(default=False, null=True, blank=True)      # Si ce media est pour la page detail
+    niveau = models.ForeignKey(Niveau, on_delete=models.CASCADE, null=True, blank=True)
 
     # class Meta:
     #     unique_together = ('bien', 'media_type')

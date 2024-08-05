@@ -5,10 +5,9 @@ from django.utils.html import format_html
 
 # Register your models here.
 
-# admin.site.register(Bien)
-
-
+admin.site.register(Niveau)    
 admin.site.register(Piece)
+admin.site.register(BienLocalisation)
 
 
 class BienPieceInline(admin.TabularInline):
