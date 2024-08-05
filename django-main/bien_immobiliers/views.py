@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
@@ -7,6 +7,7 @@ from django.db.models.functions import Concat
 from .models import *
 from django.db.models import Prefetch
 from django.core.paginator import Paginator
+
 
 
 
@@ -55,5 +56,24 @@ def product_list(request, action):
     }
     return render(request, 'biens_immobiliers/properties-list-sidebar.html', context)
 
+
 def product_details(request, product_id):
-    return render(request, 'biens_immobiliers/property-detail-v2.html')
+    product = get_object_or_404(Bien, id=product_id, visible=True)
+    pieces_int = BienPiece.objects.filter(bien=product, interieur=True)
+    pieces_ext = BienPiece.objects.filter(bien=product, interieur=False)
+    localisation = BienLocalisation.objects.filter(bien=product)
+    plans = BienMedia.objects.filter(bien=product, media_type="pln")
+    images = BienMedia.objects.filter(bien=product, media_type="img")
+    docs = product.docs
+
+    context = {
+        "product": product,
+        "pieces_int": pieces_int,
+        "pieces_ext": pieces_ext,
+        "localisation": localisation,
+        "plans": plans,
+        "images": images,
+        "docs": docs,
+    }
+
+    return render(request, 'biens_immobiliers/property-detail-v2.html', context)

@@ -46,9 +46,16 @@ class Niveau(models.Model):
 
     def __str__(self):
         return self.nom
-        
-        
-    
+
+
+class Commodite(models.Model):
+    code = models.CharField(max_length=50, primary_key=True)
+    nom = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nom
+
+
 
 class Depositaire(models.Model):
     nom = models.CharField(max_length=50)
@@ -65,6 +72,7 @@ class Depositaire(models.Model):
     date_creation = models.DateField(auto_now_add=True)
     date_modif = models.DateField(auto_now=True)
     is_active = models.BooleanField(default=True)
+    description = models.TextField(null=True, blank=True)
     
     def __str__(self):
         return self.nom
@@ -158,6 +166,8 @@ class Bien(models.Model):
     nb_etage = models.IntegerField(null=True, blank=True)             # pour les immeubles
     nb_appartements = models.IntegerField(null=True, blank=True)      # pour les immeubles
     description = models.TextField(null=True, blank=True)
+    annee_construction = models.CharField(max_length=50, null=True, blank=True)
+    commodites = models.ManyToManyField(Commodite, related_name="biens")
     
     def __str__(self):        
         return self.type_bien.nom

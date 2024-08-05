@@ -8,6 +8,7 @@ from django.utils.html import format_html
 admin.site.register(Niveau)    
 admin.site.register(Piece)
 admin.site.register(BienLocalisation)
+admin.site.register(Commodite)
 
 
 class BienPieceInline(admin.TabularInline):
@@ -33,6 +34,7 @@ class DepositaireContactInline(admin.TabularInline):
 class BienLocalisationInline(admin.TabularInline):
     model = BienLocalisation
     extra = 3
+    
 
 
 class DepositaireAdmin(admin.ModelAdmin):
@@ -48,7 +50,7 @@ class BienAdmin(admin.ModelAdmin):
     inlines = (BienPieceInline, BienMediaInline, BienLocalisationInline, BienDocInline, )
     fieldsets = (
         ('Dépositaires', {'fields': ('depositaire',)}),
-        ('biens', {'fields': ('type_bien', 'type_maison', 'nb_piece', 'utilisation', 'superficie', 'superficie_habitable', 'standing',)}),
+        ('biens', {'fields': ('type_bien', 'type_maison', 'nb_piece', 'utilisation', 'superficie', 'superficie_habitable', 'standing', 'commodites',)}),
         ('Coût', {'fields': ('mode_commercial', 'prix', )}),
         ('Bien immobiliers', {'fields': ('promotion_immobiliere', 'apport_initial', 'cout_dossier',)}),
         ('Immeuble', {'fields': ('nb_etage', 'nb_appartements',)}),
