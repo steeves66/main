@@ -25,26 +25,26 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="image-detail">
-                             <img src="{% static 'assets/images/slider/slider-detail-1.jpg' %}" alt="images">
-                         </div>
-                     </div>
-                     <div class="swiper-slide">
+                               <img src="{% static 'assets/images/slider/slider-detail-1.jpg' %}" alt="images">
+                           </div>
+                       </div>
+                       <div class="swiper-slide">
                         <div class="image-detail">
-                         <img src="{% static 'assets/images/slider/slider-detail-12.jpg' %}" alt="images">
-                     </div>
-                 </div>
-                 <div class="swiper-slide">
+                           <img src="{% static 'assets/images/slider/slider-detail-12.jpg' %}" alt="images">
+                       </div>
+                   </div>
+                   <div class="swiper-slide">
                     <div class="image-detail">
-                     <img src="{% static 'assets/images/slider/slider-detail-13.jpg' %}" alt="images">
-                 </div>
-             </div>
-             <div class="swiper-slide">
+                       <img src="{% static 'assets/images/slider/slider-detail-13.jpg' %}" alt="images">
+                   </div>
+               </div>
+               <div class="swiper-slide">
                 <div class="image-detail">
-                 <img src="{% static 'assets/images/slider/slider-detail-14.jpg' %}" alt="images">
-             </div>
-         </div>
-     </div>
-     <div class="button-custom-slider">
+                   <img src="{% static 'assets/images/slider/slider-detail-14.jpg' %}" alt="images">
+               </div>
+           </div>
+       </div>
+       <div class="button-custom-slider">
         <div class="swiper-button-next5"><i class="far fa-chevron-down"></i></div>
         <div class="swiper-button-prev5"><i class="far fa-chevron-up"></i></div>
     </div>  
@@ -87,59 +87,39 @@
                     <div class="box-1">
                         <div class="title-heading fs-30 fw-7 lh-45">
                             {% if product.type_bien.code == 'msn' %}
-                                {{ product.type_maison.nom|capfirst }} - {{ product.nb_piece }} pièces
+                            {{ product.type_maison.nom|capfirst }} - {{ product.nb_piece }} pièces
                             {% endif %}
 
                             {% if product.type_bien.code != 'msn' %}
-                                {{product.type_bien.nom|capfirst}}
+                            {{product.type_bien.nom|capfirst}}
                             {% endif %}
                         </div>
                         <div class="inner flex">
                             <div class="sales-detail fs-12 fw-7 font-2 text-color-1">{{ product.mode_commercial }}</div>
                             <div class="text-address"><p>{{product.localisation|capfirst}} {% if product.type_bien.code == 'msn' %} {{ product.nb_piece }} {% endif %}</p></div>
-                            <!-- <div class="icon-inner flex">
-                                <div class="years-icon flex align-center">
-                                    <i class="fal fa-calendar"></i>
-                                    <p class="text-color-2">2 years ago</p>
-                                </div>
-                                <div class="view-icon flex align-center">
-                                    <i class="far fa-eye"></i>
-                                    <p class="text-color-2">4.529 Views</p>
-                                </div>
-                            </div> -->
                         </div>
 
                         <div class="icon-box flex">
-                            <div class="icons years-icon flex">
-                                <i class="fal fa-calendar"></i>
-                                <span class="mx-10">Année construction: </span>
+                            <div class="icons icon-3 flex">
+                            <!-- <div class="icons years-icon flex">
+                                <i class="fal fa-calendar"></i> -->
+                                <span>Année construction: </span>
                                 <span class="fw-6">{{ product.annee_construction }}</span>
                             </div>
-                            <!-- <div class="icons icon-1 flex"><span>Beds: </span><span class="fw-6">4</span></div>
-                            <div class="icons icon-2 flex"><span>Baths: </span><span class="fw-6">2</span></div> -->
                             <div class="icons icon-3 flex">
                                 <span>Superficie: </span>
                                 <span class="fw-6">{{product.superficie}} m <sup>2</sup></span>
                             </div>
+                            {% if product.superficie_habitable %}
+                            <div class="icons icon-3 flex">
+                                <span>Superficie habitable: </span>
+                                <span class="fw-6">{{product.superficie_habitable}} m <sup>2</sup></span>
+                            </div>
+                            {% endif %}
                         </div> 
                     </div>
                     <div class="box-2 text-end">
                         <div class="icon-box flex">
-                            <!-- <a href="#">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15.75 6.1875C15.75 4.32375 14.1758 2.8125 12.234 2.8125C10.7828 2.8125 9.53625 3.657 9 4.86225C8.46375 3.657 7.21725 2.8125 5.76525 2.8125C3.825 2.8125 2.25 4.32375 2.25 6.1875C2.25 11.6025 9 15.1875 9 15.1875C9 15.1875 15.75 11.6025 15.75 6.1875Z" stroke="#8E8E93" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                            <a href="#">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5.625 15.75L2.25 12.375M2.25 12.375L5.625 9M2.25 12.375H12.375M12.375 2.25L15.75 5.625M15.75 5.625L12.375 9M15.75 5.625H5.625" stroke="#8E8E93" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                            <a href="#">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5.41251 8.18025C5.23091 7.85348 4.94594 7.59627 4.60234 7.44899C4.25874 7.3017 3.87596 7.27268 3.51408 7.36648C3.1522 7.46029 2.83171 7.6716 2.60293 7.96725C2.37414 8.2629 2.25 8.62616 2.25 9C2.25 9.37384 2.37414 9.73709 2.60293 10.0327C2.83171 10.3284 3.1522 10.5397 3.51408 10.6335C3.87596 10.7273 4.25874 10.6983 4.60234 10.551C4.94594 10.4037 5.23091 10.1465 5.41251 9.81975M5.41251 8.18025C5.54751 8.42325 5.62476 8.70225 5.62476 9C5.62476 9.29775 5.54751 9.5775 5.41251 9.81975M5.41251 8.18025L12.587 4.19475M5.41251 9.81975L12.587 13.8052M12.587 4.19475C12.6922 4.39285 12.8358 4.568 13.0095 4.70995C13.1832 4.85189 13.3834 4.95779 13.5985 5.02146C13.8135 5.08512 14.0392 5.10527 14.2621 5.08072C14.4851 5.05617 14.7009 4.98742 14.897 4.87849C15.093 4.76957 15.2654 4.62264 15.404 4.44631C15.5427 4.26998 15.6448 4.06778 15.7043 3.85154C15.7639 3.63529 15.7798 3.40934 15.751 3.18689C15.7222 2.96445 15.6494 2.74997 15.5368 2.556C15.3148 2.17375 14.9518 1.89385 14.5256 1.77646C14.0995 1.65907 13.6443 1.71356 13.2579 1.92821C12.8715 2.14287 12.5848 2.50056 12.4593 2.92439C12.3339 3.34823 12.3797 3.80436 12.587 4.19475ZM12.587 13.8052C12.4794 13.999 12.4109 14.2121 12.3856 14.4323C12.3603 14.6526 12.3787 14.8756 12.4396 15.0888C12.5005 15.3019 12.6028 15.501 12.7406 15.6746C12.8784 15.8482 13.0491 15.993 13.2429 16.1006C13.4367 16.2083 13.6498 16.2767 13.87 16.302C14.0902 16.3273 14.3133 16.309 14.5264 16.2481C14.7396 16.1872 14.9386 16.0849 15.1122 15.947C15.2858 15.8092 15.4306 15.6385 15.5383 15.4447C15.7557 15.0534 15.8087 14.5917 15.6857 14.1612C15.5627 13.7308 15.2737 13.3668 14.8824 13.1494C14.491 12.932 14.0293 12.8789 13.5989 13.0019C13.1684 13.1249 12.8044 13.4139 12.587 13.8052Z" stroke="#8E8E93" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a> -->
                             <a href="#">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.04 10.3718C4.86 10.3943 4.68 10.4183 4.5 10.4438M5.04 10.3718C7.66969 10.0418 10.3303 10.0418 12.96 10.3718M5.04 10.3718L4.755 13.5M12.96 10.3718C13.14 10.3943 13.32 10.4183 13.5 10.4438M12.96 10.3718L13.245 13.5L13.4167 15.3923C13.4274 15.509 13.4136 15.6267 13.3762 15.7378C13.3388 15.8489 13.2787 15.951 13.1996 16.0376C13.1206 16.1242 13.0244 16.1933 12.9172 16.2407C12.8099 16.288 12.694 16.3125 12.5767 16.3125H5.42325C4.92675 16.3125 4.53825 15.8865 4.58325 15.3923L4.755 13.5M4.755 13.5H3.9375C3.48995 13.5 3.06072 13.3222 2.74426 13.0057C2.42779 12.6893 2.25 12.2601 2.25 11.8125V7.092C2.25 6.28125 2.826 5.58075 3.62775 5.46075C4.10471 5.3894 4.58306 5.32764 5.0625 5.2755M13.2435 13.5H14.0618C14.2834 13.5001 14.5029 13.4565 14.7078 13.3718C14.9126 13.287 15.0987 13.1627 15.2555 13.006C15.4123 12.8493 15.5366 12.6632 15.6215 12.4585C15.7063 12.2537 15.75 12.0342 15.75 11.8125V7.092C15.75 6.28125 15.174 5.58075 14.3723 5.46075C13.8953 5.38941 13.4169 5.32764 12.9375 5.2755M12.9375 5.2755C10.3202 4.99073 7.67978 4.99073 5.0625 5.2755M12.9375 5.2755V2.53125C12.9375 2.0655 12.5595 1.6875 12.0938 1.6875H5.90625C5.4405 1.6875 5.0625 2.0655 5.0625 2.53125V5.2755M13.5 7.875H13.506V7.881H13.5V7.875ZM11.25 7.875H11.256V7.881H11.25V7.875Z" stroke="#8E8E93" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -158,186 +138,126 @@
         <div class="row">                      
             <div class="col-lg-8">
                 <div class="post">
-                    <!-- <div class="wrap-featured wrap-style tf-amenities">
-                        <h3 class="titles">Pieces</h3>
-                        <div class="box-featured flex">
-                            <div class="inner-1">
-                                <div class="subtitle title-1 fw-6">Intérieur</div>
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Swimming pool</span> 
-                                </label>
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Balcony</span> 
-                                </label>
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Undercover parking</span> 
-                                </label>
-                            </div>
-                            <div class="inner-2">
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Tennis court</span> 
-                                </label>
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Garage</span> 
-                                </label>
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Outdoor area</span> 
-                                </label>
-                            </div>
-                            <div class="inner-3">
-                                <div class="subtitle title-1 fw-6">Extérieur</div>
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Ensuite</span> 
-                                </label>
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Study</span> 
-                                </label>
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Alarm system</span> 
-                                </label>
-                            </div>
-                            <div class="inner-4">
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Dishwasher</span> 
-                                </label>
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Built in robes</span> 
-                                </label>
-                                <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                    <span class="btn-checkbox"></span><span class="fs-13">Broadband</span> 
-                                </label>
-                            </div>
-                        </div>
-                    </div> -->
-
 
                     <div class="wrap-featured wrap-style tf-amenities">
-                        <h3 class="titles">Détails</h3>
+                        <h3 class="titles">
+                            {% if product.type_bien.code == 'msn' %}
+                                Pièces
+                            {% else %}
+                                Details
+                            {% endif %}
+                        </h3>
                         <div class="box-featured flex flex-column">
                             {% if product.type_bien.code == 'msn' %}
-                                <div style="display: flex; flex-direction: column; ">
-                                    <div class="subtitle title-1 fw-6">Pièces</div>
-                                    <div class="inter">
-                                        {% for piece in pieces_int %}
-                                        <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                            <span class="btn-checkbox"></span><span class="fs-13">{{piece.piece.nom}}</span> 
-                                            {% if piece.nombre > 1 %}
-                                                <span class="fw-1">: {{ piece.nombre }}</span> 
-                                            {% endif %}
-                                        </label>
-                                        {% endfor %}
-                                    </div>
+                            <div class="subtitle title-1 fw-6">Intérieurs</div>
+                            <div class="grid-container">
+                                {% for piece in pieces_int %}
+                                <div class="grid-item">
+                                    <label class="flex"><input name="newsletter" type="checkbox" checked /> 
+                                        <span class="btn-checkbox"></span><span class="fs-13 fw-6">{{piece.piece.nom| capfirst }}</span> 
+                                        {% if piece.nombre > 1 %}
+                                        <span class="fw-1">: {{ piece.nombre }}</span> 
+                                        {% endif %}
+                                    </label>
                                 </div>
-                                <div style="display: flex; flex-direction: column;" class="mt-20">
-                                    <div class="subtitle title-1 fw-6">Extérieurs</div>
-                                    <div class="inter">
-                                        {% for piece in pieces_ext %}
-                                        <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                            <span class="btn-checkbox"></span><span class="fs-13 subtitle title-1 fw-4">{{piece.piece.nom}}</span> 
-                                            {% if piece.nombre > 1 %}
-                                                <span class="fw-1">: {{ piece.nombre }}</span> 
-                                            {% endif %}
-                                        </label>
-                                        {% endfor %}
-                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="subtitle title-1 fw-6 mt-20">Extérieurs</div>
+                            <div class="grid-container">
+                                {% for piece in pieces_ext %}
+                                <div class="grid-item">
+                                    <label class="flex"><input name="newsletter" type="checkbox" checked /> 
+                                        <span class="btn-checkbox"></span><span class="fs-13  fw-6">{{piece.piece.nom| capfirst }}</span> 
+                                        {% if piece.nombre > 1 %}
+                                        <span class="fw-1">: {{ piece.nombre }}</span> 
+                                        {% endif %}
+                                    </label>
                                 </div>
+                                {% endfor %}
+                            </div>
                             {% endif %}
 
                             {% if product.type_bien.code == 'imb' %}
-                                <div style="display: flex; flex-direction: column; ">
-                                    <div class="inter">
-                                        <label class="flex">
-                                            <input name="newsletter" type="checkbox" checked /> 
-                                            <span class="btn-checkbox"></span>
-                                            <span class="one fw-6">Etages: </span> <span> {{product.nb_etage}}</span>
-                                        </label>
-                                        <label class="flex">
-                                            <input name="newsletter" type="checkbox" checked /> 
-                                            <span class="btn-checkbox"></span>
-                                            <span class="one fw-6">Appartements: </span><span> {{product.nb_appartements}}</span>
-                                        </label>
-                                    </div>
+                            <div style="display: flex; flex-direction: column; ">
+                                <div class="inter">
+                                    <label class="flex">
+                                        <input name="newsletter" type="checkbox" checked /> 
+                                        <span class="btn-checkbox"></span>
+                                        <span class="one fw-6">Etages: </span> <span> {{product.nb_etage}}</span>
+                                    </label>
+                                    <label class="flex">
+                                        <input name="newsletter" type="checkbox" checked /> 
+                                        <span class="btn-checkbox"></span>
+                                        <span class="one fw-6">Appartements: </span><span> {{product.nb_appartements}}</span>
+                                    </label>
                                 </div>
+                            </div>
                             {% endif %}
 
                             {% if product.type_bien.code == 'terr' %}
-                                        <label class="flex">
-                                            <input name="newsletter" type="checkbox" checked /> 
-                                            <span class="btn-checkbox"></span>
-                                            <span class="one fw-6">Superficie: </span><span> {{product.superficie}} m<sup>2</sup> </span>
-                                        </label>
+                            <label class="flex">
+                                <input name="newsletter" type="checkbox" checked /> 
+                                <span class="btn-checkbox"></span>
+                                <span class="one fw-6">Superficie: </span><span> {{product.superficie}} m<sup>2</sup> </span>
+                            </label>
                             {% endif %}
-                            <!-- <div style="display: flex; flex-direction: column;" class="mt-20">
-                                <div class="subtitle title-1 fw-6">Commodités</div>
-                                <div class="inter">
-                                    {% for piece in pieces_ext %}
-                                    <label class="flex"><input name="newsletter" type="checkbox" checked /> 
-                                        <span class="btn-checkbox"></span><span class="fs-13">{{piece.piece.nom}}</span> 
-                                    </label>
-                                    {% endfor %}
-                                </div>
-                            </div> -->
                         </div>
                     </div>
 
-                    <div class="wrap-text wrap-style">
+                    <div class="wrap-featured wrap-style tf-amenities">
                         <h3 class="titles">Documents</h3>
-                        {% for doc in docs.all %}
-                            <p class="text-1 text-color-2">{{ doc.nom }}</p>
-                        {% endfor %}
+                        <div class="box-featured flex flex-column">
+                                <div class="grid-container">
+                                    {% for doc in docs.all %}
+                                    <div class="grid-item">
+                                        <label class="flex">
+                                            <span class="fs-13 fw-6">{{ doc.nom }}</span> 
+                                        </label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                        </div>
                     </div>
 
                     {% if product.description %}
-                        <div class="wrap-text wrap-style">
-                            <h3 class="titles">Description</h3>
-                            <p class="text-1 text-color-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus leo, blandit vitae diam a, vestibulum viverra nisi. Vestibulum ullamcorper velit eget mattis aliquam. Proin dapibus luctus pulvinar. Integer et libero ut purus bibendum gravida non ac tellus. Proin sed tellus porttitor, varius mauris vitae, tincidunt augue. Sed consectetur magna elit, sit amet faucibus tortor sodales vitae. Maecenas quis arcu est. Nam sit amet neque vestibulum, fringilla elit sit amet, volutpat nunc.</p>
-                            <p class="text-2 text-color-2">Aliquam non lorem consequat, luctus dui et, auctor nisi. Aenean placerat sapien at augue lacinia, non semper urna tempor. Mauris sit amet elit orci.</p>
-                            <a href="#" class="fw-6">Show more</a>
-                        </div>
+                    <div class="wrap-text wrap-style">
+                        <h3 class="titles">Description</h3>
+                        <p class="text-1 text-color-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam risus leo, blandit vitae diam a, vestibulum viverra nisi. Vestibulum ullamcorper velit eget mattis aliquam. Proin dapibus luctus pulvinar. Integer et libero ut purus bibendum gravida non ac tellus. Proin sed tellus porttitor, varius mauris vitae, tincidunt augue. Sed consectetur magna elit, sit amet faucibus tortor sodales vitae. Maecenas quis arcu est. Nam sit amet neque vestibulum, fringilla elit sit amet, volutpat nunc.</p>
+                        <p class="text-2 text-color-2">Aliquam non lorem consequat, luctus dui et, auctor nisi. Aenean placerat sapien at augue lacinia, non semper urna tempor. Mauris sit amet elit orci.</p>
+                        <a href="#" class="fw-6">Show more</a>
+                    </div>
                     {% endif %}
 
 
 
                     <div class="wrap-featured wrap-style tf-amenities">
-                        <h3 class="titles">Détails</h3>
+                        <h3 class="titles">Localisation</h3>
                         <div class="box-featured flex flex-column">
                             <div style="display: flex; flex-direction: column; ">
-                                <div class="subtitle title-1 fw-6">Localisation</div>
-                                <div class="inter">
+                                <!-- <div class="subtitle title-1 fw-6">Localisation</div> -->
+                                <div class="grid-container">
                                     {% for loc in localisation %}
+                                    <div class="grid-item">
                                         <label class="flex"><input name="newsletter" type="checkbox" checked /> 
                                             <span class="btn-checkbox"></span>
-                                            <span class="fs-13">{{ loc.localisation }}</span> 
-                                            <span class="fw-1">: {{ loc.valeur }}</span> 
+                                            <span class="fw-6 fs-13">{{ loc.localisation | capfirst }}</span> 
+                                            <span class="fw-1">: {{ loc.valeur | capfirst }}</span> 
                                         </label>
+                                    </div>
                                     {% endfor %}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- <div class="wrap-map wrap-property wrap-style">
-                        <h3 class="titles">Localisation</h3>
-                        <div class="box flex">
-                            <ul>
-                                <li class="flex"><span class="one fw-6">Ville</span><span class="two">Abidjan</span></li>
-                                <li class="flex"><span class="one fw-6">Commune</span><span class="two">Cocody</span></li>
-                                <li class="flex"><span class="one fw-6">Quartier</span><span class="two">Angré</span></li>
-                            </ul>
-                            <ul>
-                                <li class="flex"><span class="one fw-6">Secteur</span><span class="two">22 ieme</span></li>
-                                <li class="flex"><span class="one fw-6">GPS</span><span class="two">13'145'89'</span></li>
-                            </ul>
-                        </div>  
-                        <iframe class="map-content" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7302.453092836291!2d90.47477022812872!3d23.77494577893369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1627293157601!5m2!1svi!2s" allowfullscreen="" loading="lazy"></iframe>                            
-                    </div> -->
 
                     <div class="wrap-floor wrap-property wrap-style">
-                        <h3 class="titles">Floor plans</h3>
-                        <div class="flat-accordion fl-faq-content">                          
+                        <h3 class="titles">Détails plans</h3>
+                        <div class="flat-accordion fl-faq-content">      
+                        {% for plan in plans %}                    
                             <div class="flat-toggle ">
                                 <div class="toggle-title active flex justify-space">
-                                    <div class="btn-toggle"></div><div class="fw-6">First floor</div> 
+                                    <div class="btn-toggle"></div><div class="fw-6">{{ plan.niveau.nom|capfirst }}</div> 
                                     <div class="icon-box flex wg-dream">
                                         <div class="icons icon-money flex">
                                             <span><svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -351,13 +271,15 @@
                                     </div>
                                 </div>
                                 <div class="toggle-content section-desc">
-                                    <img src="{% static 'assets/images/img-box/property-5.jpg' %}" alt="">
+                                    <img src="{{ plan.url.url }}">
+                                    <!-- <img src="{% static 'assets/images/img-box/property-5.jpg' %}" alt=""> -->
                                     <div class="title fw-6">Description:</div>
                                     <p class="texts text-color-2">Proin sed tellus porttitor, varius mauris vitae, tincidunt augue. Sed consectetur magna elit, sit amet faucibus tortor sodales vitae. Maecenas quis arcu est. Nam sit amet neque vestibulum, fringilla elit sit amet, volutpat nunc.</p>
                                     <p class="text-color-2">Aliquam non lorem consequat, luctus dui et, auctor nisi. Aenean placerat sapien at augue lacinia, non semper urna tempor. Mauris sit amet elit orci.</p>
                                 </div>
                             </div>
-                            <div class="flat-toggle ">
+                        {% endfor %}
+                            <!-- <div class="flat-toggle ">
                                 <div class="toggle-title flex justify-space">
                                     <div class="btn-toggle"></div><div class="fw-6">Second floor</div> 
                                     <div class="icon-box flex wg-dream">
@@ -400,7 +322,7 @@
                                     <p class="texts text-color-2">Proin sed tellus porttitor, varius mauris vitae, tincidunt augue. Sed consectetur magna elit, sit amet faucibus tortor sodales vitae. Maecenas quis arcu est. Nam sit amet neque vestibulum, fringilla elit sit amet, volutpat nunc.</p>
                                     <p class="text-color-2">Aliquam non lorem consequat, luctus dui et, auctor nisi. Aenean placerat sapien at augue lacinia, non semper urna tempor. Mauris sit amet elit orci.</p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -488,25 +410,25 @@
         <div class="col-lg-4">
             <aside class="side-bar side-bar-1">
                 <div class="inner-side-bar">
-                        <div class="widget-tour widget-rent">
-                            <div class="flat-tabs style2">
-                                <div class="content-tab">
-                                    <div class="content-inner tab-content">
-                                        <div class="comments">
-                                            <div class="comment-form">
-                                                <div class="wd-find-select">
-                                                    <div class="button-box center">
-                                                        <button class="sc-button btn-icon2 one btn-svg center">
-                                                            <span class="">Visiter cette maison</span>
-                                                            <svg width="18" height="10" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M10.5 1L13 3.5M13 3.5L10.5 6M13 3.5H1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                            </svg>
-                                                        </button>
-                                                    </div> 
-                                                </div>
-                                                <div class="wd-find-select my-20">
-                                                    <div class="button-box center">
-                                                        <!-- <button class="second-color btn-svg center"> -->
+                    <div class="widget-tour widget-rent">
+                        <div class="flat-tabs style2">
+                            <div class="content-tab">
+                                <div class="content-inner tab-content">
+                                    <div class="comments">
+                                        <div class="comment-form">
+                                            <div class="wd-find-select">
+                                                <div class="button-box center">
+                                                    <button class="sc-button btn-icon2 one btn-svg center">
+                                                        <span class="">Visiter cette maison</span>
+                                                        <svg width="18" height="10" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M10.5 1L13 3.5M13 3.5L10.5 6M13 3.5H1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div> 
+                                            </div>
+                                            <div class="wd-find-select my-20">
+                                                <div class="button-box center">
+                                                    <!-- <button class="second-color btn-svg center"> -->
                                                         <button class="sc-button btn-1 btn-svg center">
                                                             <span class="">Ajouter aux maison à visiter</span>
                                                             <svg width="18" height="10" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -522,270 +444,270 @@
                                 </div>
                             </div>
                         </div>  
-                    <div class="widget-tour widget-rent">
-                        <h3 class="title-tour">
-                            Schedule a Tour
-                        </h3>
-                        <p class="p-tour text-color-2">Choose the most suitable day</p>
-                        <div class="days-wrap flex flex-wrap">
-                            <div class="day-box box-1 center">
-                                <p>Mon</p>
-                                <div class="number fs-18 lh-24 fw-6">17</div>
-                                <p>Apr</p>
+                        <div class="widget-tour widget-rent">
+                            <h3 class="title-tour">
+                                Schedule a Tour
+                            </h3>
+                            <p class="p-tour text-color-2">Choose the most suitable day</p>
+                            <div class="days-wrap flex flex-wrap">
+                                <div class="day-box box-1 center">
+                                    <p>Mon</p>
+                                    <div class="number fs-18 lh-24 fw-6">17</div>
+                                    <p>Apr</p>
+                                </div>
+                                <div class="day-box box-2 center">
+                                    <p>Mon</p>
+                                    <div class="number fs-18 lh-24 fw-6">18</div>
+                                    <p>Apr</p>
+                                </div>
+                                <div class="day-box box-3 center">
+                                    <p>Mon</p>
+                                    <div class="number fs-18 lh-24 fw-6">19</div>
+                                    <p>Apr</p>
+                                </div>
+                                <div class="day-box box-4 center">
+                                    <p>Mon</p>
+                                    <div class="number fs-18 lh-24 fw-6">20</div>
+                                    <p>Apr</p>
+                                </div>
                             </div>
-                            <div class="day-box box-2 center">
-                                <p>Mon</p>
-                                <div class="number fs-18 lh-24 fw-6">18</div>
-                                <p>Apr</p>
-                            </div>
-                            <div class="day-box box-3 center">
-                                <p>Mon</p>
-                                <div class="number fs-18 lh-24 fw-6">19</div>
-                                <p>Apr</p>
-                            </div>
-                            <div class="day-box box-4 center">
-                                <p>Mon</p>
-                                <div class="number fs-18 lh-24 fw-6">20</div>
-                                <p>Apr</p>
-                            </div>
-                        </div>
-                        <h5>Tour Type</h5>
-                        <div class="flat-tabs style2">
-                            <div class="box-tab center">
-                                <ul class="menu-tab tab-title flex">
-                                    <li class="item-title active flex align-center">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M7 10.75L9.25 13L13 7.75M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>
-                                        <h4 class="inner">In person</h4>
-                                    </li>
-                                    <li class="item-title style btn-1">
-                                        <h4 class="inner">Video chat </h4>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="content-tab">
-                                <div class="content-inner tab-content">
-                                    <div class="comments">
-                                        <div class="comment-form">
-                                            <form method="post">
-                                                <div class="wd-find-select ">
-                                                    <div class="group-select">
-                                                        <div class="nice-select" tabindex="0"><span class="current">Choose time</span>
-                                                            <ul class="list">   
-                                                                <li data-value class="option selected">Choose time</li>                                                       
-                                                                <li data-value="6" class="option">6h</li>
-                                                                <li data-value="8" class="option">8h</li>
-                                                                <li data-value="10" class="option">10h</li>
-                                                                <li data-value="14" class="option">14h</li>  
-                                                                <li data-value="16" class="option">16h</li>  
-                                                                <li data-value="18" class="option">18h</li>                                                                  
-                                                                <li data-value="20" class="option">20h</li>
-                                                            </ul>
+                            <h5>Tour Type</h5>
+                            <div class="flat-tabs style2">
+                                <div class="box-tab center">
+                                    <ul class="menu-tab tab-title flex">
+                                        <li class="item-title active flex align-center">
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7 10.75L9.25 13L13 7.75M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                            <h4 class="inner">In person</h4>
+                                        </li>
+                                        <li class="item-title style btn-1">
+                                            <h4 class="inner">Video chat </h4>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="content-tab">
+                                    <div class="content-inner tab-content">
+                                        <div class="comments">
+                                            <div class="comment-form">
+                                                <form method="post">
+                                                    <div class="wd-find-select ">
+                                                        <div class="group-select">
+                                                            <div class="nice-select" tabindex="0"><span class="current">Choose time</span>
+                                                                <ul class="list">   
+                                                                    <li data-value class="option selected">Choose time</li>                                                       
+                                                                    <li data-value="6" class="option">6h</li>
+                                                                    <li data-value="8" class="option">8h</li>
+                                                                    <li data-value="10" class="option">10h</li>
+                                                                    <li data-value="14" class="option">14h</li>  
+                                                                    <li data-value="16" class="option">16h</li>  
+                                                                    <li data-value="18" class="option">18h</li>                                                                  
+                                                                    <li data-value="20" class="option">20h</li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <fieldset class="">
-                                                        <input type="text" class="" name="text" placeholder="Your name" required="">
-                                                    </fieldset>
-                                                    <fieldset class="">
-                                                        <input type="tel" class="" name="tel" placeholder="Phone number" required="">
-                                                    </fieldset>
-                                                    <fieldset class="">
-                                                        <input type="email" class="" name="email" placeholder="Email address" required="">
-                                                    </fieldset>
-                                                    <fieldset class="message-wrap">
-                                                        <textarea name="message" rows="4" tabindex="4" placeholder="Your mesage"></textarea>
-                                                    </fieldset> 
-                                                    <div class="widget-form flex">
-                                                        <label class="widget-form ">
-                                                            <input type="checkbox">
-                                                            <span class="btn-checkbox flex-two"></span>
-                                                        </label>
-                                                        <div class="flex fs-13 lh-18">
-                                                            <span class="sub-title">I agree to the</span>
-                                                            <a href="#" class="font-2 text-color-3 text-line"> Terms and Conditions.</a>
+                                                        <fieldset class="">
+                                                            <input type="text" class="" name="text" placeholder="Your name" required="">
+                                                        </fieldset>
+                                                        <fieldset class="">
+                                                            <input type="tel" class="" name="tel" placeholder="Phone number" required="">
+                                                        </fieldset>
+                                                        <fieldset class="">
+                                                            <input type="email" class="" name="email" placeholder="Email address" required="">
+                                                        </fieldset>
+                                                        <fieldset class="message-wrap">
+                                                            <textarea name="message" rows="4" tabindex="4" placeholder="Your mesage"></textarea>
+                                                        </fieldset> 
+                                                        <div class="widget-form flex">
+                                                            <label class="widget-form ">
+                                                                <input type="checkbox">
+                                                                <span class="btn-checkbox flex-two"></span>
+                                                            </label>
+                                                            <div class="flex fs-13 lh-18">
+                                                                <span class="sub-title">I agree to the</span>
+                                                                <a href="#" class="font-2 text-color-3 text-line"> Terms and Conditions.</a>
+                                                            </div>
                                                         </div>
+                                                        <div class="button-box center">
+                                                            <button class="sc-button btn-icon2 one btn-svg center">
+                                                                <span class="">Submit a Tour Request</span>
+                                                                <svg width="18" height="10" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M10.5 1L13 3.5M13 3.5L10.5 6M13 3.5H1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                                </svg>
+                                                            </button>
+                                                        </div> 
                                                     </div>
-                                                    <div class="button-box center">
-                                                        <button class="sc-button btn-icon2 one btn-svg center">
-                                                            <span class="">Submit a Tour Request</span>
-                                                            <svg width="18" height="10" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M10.5 1L13 3.5M13 3.5L10.5 6M13 3.5H1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                            </svg>
-                                                        </button>
-                                                    </div> 
-                                                </div>
-                                            </form>
-                                        </div> 
+                                                </form>
+                                            </div> 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="widget-rent style">
-                        <h3 class="widget-title title-contact">
-                            Contact seller
-                        </h3>
-                        <div class="author-box flex align-center">
-                            <div class="image-author flex-none">
-                                <img src="{% static 'assets/images/author/author-footer.jpg' %}" alt="images">
+                        <div class="widget-rent style">
+                            <h3 class="widget-title title-contact">
+                                Contact seller
+                            </h3>
+                            <div class="author-box flex align-center">
+                                <div class="image-author flex-none">
+                                    <img src="{% static 'assets/images/author/author-footer.jpg' %}" alt="images">
+                                </div>
+                                <div class="content">
+                                    <p class="text-color-2">Cameron Williamson</p>
+                                    <h5 class="link-style-1"><a href="tel:0123456789">(405) 555-000-999</a></h5>
+                                    <a class="fs-12 lh-18" href="mailto:cameronwilliamson@gmail.com">cameronwilliamson@gmail.com</a>
+                                </div>
                             </div>
-                            <div class="content">
-                                <p class="text-color-2">Cameron Williamson</p>
-                                <h5 class="link-style-1"><a href="tel:0123456789">(405) 555-000-999</a></h5>
-                                <a class="fs-12 lh-18" href="mailto:cameronwilliamson@gmail.com">cameronwilliamson@gmail.com</a>
+                            <div class="comments">
+                                <div class="comment-form">
+                                    <form method="post">
+                                        <div class="wd-find-select ">
+                                            <fieldset class="">
+                                                <input type="text" class="" name="text" placeholder="Full name *" required="">
+                                            </fieldset>
+                                            <fieldset class="">
+                                                <input type="tel" class="" name="tel" placeholder="Phone number *" required="">
+                                            </fieldset>
+                                            <fieldset class="">
+                                                <input type="email" class="" name="email" placeholder="Email address" required="">
+                                            </fieldset>
+                                            <fieldset class="message-wrap">
+                                                <textarea name="message" rows="4" tabindex="4" placeholder="Your mesage *"></textarea>
+                                            </fieldset> 
+                                            <div class="button-box sc-btn-top center flex justify-space">
+                                                <button class="sc-button btn-svg">
+                                                    <span>Send message</span>
+                                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M1.125 6.5025V12.9375C1.125 13.5342 1.36205 14.1065 1.78401 14.5285C2.20597 14.9504 2.77826 15.1875 3.375 15.1875H14.625C15.2217 15.1875 15.794 14.9504 16.216 14.5285C16.6379 14.1065 16.875 13.5342 16.875 12.9375V6.5025L10.179 10.6223C9.82443 10.8404 9.4163 10.9559 9 10.9559C8.5837 10.9559 8.17557 10.8404 7.821 10.6223L1.125 6.5025Z" fill="white"/>
+                                                        <path d="M16.875 5.181V5.0625C16.875 4.46576 16.6379 3.89347 16.216 3.47151C15.794 3.04955 15.2217 2.8125 14.625 2.8125H3.375C2.77826 2.8125 2.20597 3.04955 1.78401 3.47151C1.36205 3.89347 1.125 4.46576 1.125 5.0625V5.181L8.4105 9.6645C8.58778 9.77357 8.79185 9.83132 9 9.83132C9.20815 9.83132 9.41222 9.77357 9.5895 9.6645L16.875 5.181Z" fill="white"/>
+                                                    </svg>
+                                                </button>
+                                                <a class="sc-button btn-1 btn-svg" href="tel:012345678">
+                                                    <span>Call</span>
+                                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.125 7.31249C15.125 7.46168 15.0657 7.60475 14.9602 7.71024C14.8548 7.81573 14.7117 7.87499 14.5625 7.87499H11.1875C11.0383 7.87499 10.8952 7.81573 10.7898 7.71024C10.6843 7.60475 10.625 7.46168 10.625 7.31249V3.93749C10.625 3.78831 10.6843 3.64523 10.7898 3.53975C10.8952 3.43426 11.0383 3.37499 11.1875 3.37499C11.3367 3.37499 11.4798 3.43426 11.5852 3.53975C11.6907 3.64523 11.75 3.78831 11.75 3.93749V5.95499L15.29 2.41499C15.3415 2.35973 15.4036 2.3154 15.4726 2.28466C15.5416 2.25391 15.6161 2.23738 15.6916 2.23605C15.7671 2.23472 15.8422 2.24861 15.9122 2.2769C15.9822 2.30519 16.0459 2.3473 16.0993 2.40071C16.1527 2.45413 16.1948 2.51775 16.2231 2.5878C16.2514 2.65784 16.2653 2.73286 16.2639 2.80839C16.2626 2.88391 16.2461 2.9584 16.2153 3.0274C16.1846 3.0964 16.1403 3.1585 16.085 3.20999L12.545 6.74999H14.5625C14.7117 6.74999 14.8548 6.80926 14.9602 6.91475C15.0657 7.02024 15.125 7.16331 15.125 7.31249Z" fill="#1C1C1E"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.625 3.375C1.625 2.77826 1.86205 2.20597 2.28401 1.78401C2.70597 1.36205 3.27826 1.125 3.875 1.125H4.904C5.549 1.125 6.1115 1.5645 6.26825 2.19L7.097 5.50725C7.16416 5.77575 7.15059 6.05809 7.058 6.31892C6.96542 6.57974 6.79792 6.80744 6.5765 6.9735L5.60675 7.701C5.5055 7.77675 5.48375 7.88775 5.51225 7.965C5.93553 9.11614 6.60395 10.1615 7.47121 11.0288C8.33847 11.8961 9.38386 12.5645 10.535 12.9877C10.6123 13.0162 10.7225 12.9945 10.799 12.8932L11.5265 11.9235C11.6926 11.7021 11.9203 11.5346 12.1811 11.442C12.4419 11.3494 12.7243 11.3358 12.9928 11.403L16.31 12.2318C16.9355 12.3885 17.375 12.951 17.375 13.5968V14.625C17.375 15.2217 17.1379 15.794 16.716 16.216C16.294 16.6379 15.7217 16.875 15.125 16.875H13.4375C6.914 16.875 1.625 11.586 1.625 5.0625V3.375Z" fill="#1C1C1E"/>
+                                                    </svg>
+                                                </a>
+                                            </div> 
+                                        </div>
+                                    </form>
+                                </div> 
                             </div>
                         </div>
-                        <div class="comments">
-                            <div class="comment-form">
-                                <form method="post">
-                                    <div class="wd-find-select ">
-                                        <fieldset class="">
-                                            <input type="text" class="" name="text" placeholder="Full name *" required="">
-                                        </fieldset>
-                                        <fieldset class="">
-                                            <input type="tel" class="" name="tel" placeholder="Phone number *" required="">
-                                        </fieldset>
-                                        <fieldset class="">
-                                            <input type="email" class="" name="email" placeholder="Email address" required="">
-                                        </fieldset>
-                                        <fieldset class="message-wrap">
-                                            <textarea name="message" rows="4" tabindex="4" placeholder="Your mesage *"></textarea>
-                                        </fieldset> 
-                                        <div class="button-box sc-btn-top center flex justify-space">
-                                            <button class="sc-button btn-svg">
-                                                <span>Send message</span>
-                                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M1.125 6.5025V12.9375C1.125 13.5342 1.36205 14.1065 1.78401 14.5285C2.20597 14.9504 2.77826 15.1875 3.375 15.1875H14.625C15.2217 15.1875 15.794 14.9504 16.216 14.5285C16.6379 14.1065 16.875 13.5342 16.875 12.9375V6.5025L10.179 10.6223C9.82443 10.8404 9.4163 10.9559 9 10.9559C8.5837 10.9559 8.17557 10.8404 7.821 10.6223L1.125 6.5025Z" fill="white"/>
-                                                    <path d="M16.875 5.181V5.0625C16.875 4.46576 16.6379 3.89347 16.216 3.47151C15.794 3.04955 15.2217 2.8125 14.625 2.8125H3.375C2.77826 2.8125 2.20597 3.04955 1.78401 3.47151C1.36205 3.89347 1.125 4.46576 1.125 5.0625V5.181L8.4105 9.6645C8.58778 9.77357 8.79185 9.83132 9 9.83132C9.20815 9.83132 9.41222 9.77357 9.5895 9.6645L16.875 5.181Z" fill="white"/>
-                                                </svg>
-                                            </button>
-                                            <a class="sc-button btn-1 btn-svg" href="tel:012345678">
-                                                <span>Call</span>
-                                                <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.125 7.31249C15.125 7.46168 15.0657 7.60475 14.9602 7.71024C14.8548 7.81573 14.7117 7.87499 14.5625 7.87499H11.1875C11.0383 7.87499 10.8952 7.81573 10.7898 7.71024C10.6843 7.60475 10.625 7.46168 10.625 7.31249V3.93749C10.625 3.78831 10.6843 3.64523 10.7898 3.53975C10.8952 3.43426 11.0383 3.37499 11.1875 3.37499C11.3367 3.37499 11.4798 3.43426 11.5852 3.53975C11.6907 3.64523 11.75 3.78831 11.75 3.93749V5.95499L15.29 2.41499C15.3415 2.35973 15.4036 2.3154 15.4726 2.28466C15.5416 2.25391 15.6161 2.23738 15.6916 2.23605C15.7671 2.23472 15.8422 2.24861 15.9122 2.2769C15.9822 2.30519 16.0459 2.3473 16.0993 2.40071C16.1527 2.45413 16.1948 2.51775 16.2231 2.5878C16.2514 2.65784 16.2653 2.73286 16.2639 2.80839C16.2626 2.88391 16.2461 2.9584 16.2153 3.0274C16.1846 3.0964 16.1403 3.1585 16.085 3.20999L12.545 6.74999H14.5625C14.7117 6.74999 14.8548 6.80926 14.9602 6.91475C15.0657 7.02024 15.125 7.16331 15.125 7.31249Z" fill="#1C1C1E"/>
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.625 3.375C1.625 2.77826 1.86205 2.20597 2.28401 1.78401C2.70597 1.36205 3.27826 1.125 3.875 1.125H4.904C5.549 1.125 6.1115 1.5645 6.26825 2.19L7.097 5.50725C7.16416 5.77575 7.15059 6.05809 7.058 6.31892C6.96542 6.57974 6.79792 6.80744 6.5765 6.9735L5.60675 7.701C5.5055 7.77675 5.48375 7.88775 5.51225 7.965C5.93553 9.11614 6.60395 10.1615 7.47121 11.0288C8.33847 11.8961 9.38386 12.5645 10.535 12.9877C10.6123 13.0162 10.7225 12.9945 10.799 12.8932L11.5265 11.9235C11.6926 11.7021 11.9203 11.5346 12.1811 11.442C12.4419 11.3494 12.7243 11.3358 12.9928 11.403L16.31 12.2318C16.9355 12.3885 17.375 12.951 17.375 13.5968V14.625C17.375 15.2217 17.1379 15.794 16.716 16.216C16.294 16.6379 15.7217 16.875 15.125 16.875H13.4375C6.914 16.875 1.625 11.586 1.625 5.0625V3.375Z" fill="#1C1C1E"/>
-                                                </svg>
-                                            </a>
-                                        </div> 
+                        <div class="widget widget-listings style"> 
+                            <h3 class="widget-title title-list">
+                                Featured listings
+                            </h3>                                                                                                                        
+                            <div class="box-listings flex hover-img3">
+                                <div class="img-listings img-style3">
+                                    <img src="{% static 'assets/images/img-box/sidebar-listings-1.jpg' %}" alt="images">
+                                </div>
+                                <div class="content link-style-1">
+                                    <a class="fs-16 lh-24" href="property-detail-v1.html">Gorgeous Apartment Building</a>
+                                    <h4>$7,500</h4>
+                                </div>
+                            </div>
+                            <div class="box-listings flex hover-img3">
+                                <div class="img-listings img-style3">
+                                    <img src="{% static 'assets/images/img-box/sidebar-listings-2.jpg' %}" alt="images">
+                                </div>
+                                <div class="content link-style-1">
+                                    <a class="fs-16 lh-24" href="property-detail-v1.html">Gorgeous Apartment Building</a>
+                                    <h4>$7,500</h4>
+                                </div>
+                            </div>
+                            <div class="box-listings flex hover-img3">
+                                <div class="img-listings img-style3">
+                                    <img src="{% static 'assets/images/img-box/sidebar-listings-3.jpg' %}" alt="images">
+                                </div>
+                                <div class="content link-style-1">
+                                    <a class="fs-16 lh-24" href="property-detail-v1.html">Gorgeous Apartment Building</a>
+                                    <h4>$7,500</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget widget-estate">
+                            <h3 class="widget-title title-news">
+                                Real estate near you
+                            </h3>                       
+                            <ul class="group-estate flex">
+                                <li class="box-estate hover-img2">
+                                    <div class="thumb img-style2 ">
+                                        <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-1.jpg' %}" alt="images">
                                     </div>
-                                </form>
-                            </div> 
+                                    <div class="content">    
+                                        <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Moncton</a> </div>                              
+                                        <p class="fs-12 lh-16 text-color-1">1570 listing</p>
+                                    </div>
+                                </li>
+                                <li class="box-estate hover-img2">
+                                    <div class="thumb img-style2 ">
+                                        <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-2.jpg' %}" alt="images">
+                                    </div>
+                                    <div class="content">    
+                                        <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Mississauga</a> </div>                              
+                                        <p class="fs-12 lh-16 text-color-1">1570 listing</p>
+                                    </div>
+                                </li>
+                                <li class="box-estate hover-img2">
+                                    <div class="thumb img-style2 ">
+                                        <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-3.jpg' %}" alt="images">
+                                    </div>
+                                    <div class="content">    
+                                        <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Halifax</a> </div>                              
+                                        <p class="fs-12 lh-16 text-color-1">1570 listing</p>
+                                    </div>
+                                </li>
+                                <li class="box-estate hover-img2">
+                                    <div class="thumb img-style2 ">
+                                        <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-4.jpg' %}" alt="images">
+                                    </div>
+                                    <div class="content">    
+                                        <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Ottawa</a> </div>                              
+                                        <p class="fs-12 lh-16 text-color-1">1570 listing</p>
+                                    </div>
+                                </li>
+                                <li class="box-estate hover-img2">
+                                    <div class="thumb img-style2 ">
+                                        <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-5.jpg' %}" alt="images">
+                                    </div>
+                                    <div class="content">    
+                                        <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Iqaluit</a> </div>                              
+                                        <p class="fs-12 lh-16 text-color-1">1570 listing</p>
+                                    </div>
+                                </li>
+                                <li class="box-estate hover-img2">
+                                    <div class="thumb img-style2 ">
+                                        <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-6.jpg' %}" alt="images">
+                                    </div>
+                                    <div class="content">    
+                                        <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Toronto</a> </div>                              
+                                        <p class="fs-12 lh-16 text-color-1">1570 listing</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div> 
+                        <div class="widget widget-ads">  
+                            <div class="box-ads">
+                                <div class="content relative z-2">
+                                    <h3 class="link-style-3"><a href="property-detail-v1.html">Gorgeous Apartment Building</a> </h3>
+                                    <div class="text-addres "><p class="p-12 text-color-1 icon-p">58 Hullbrook Road, Billesley, B13 0LA</p></div>
+                                    <div class="star flex">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>  <g>     <polygon points="512,197.816 325.961,185.585 255.898,9.569 185.835,185.585 0,197.816 142.534,318.842 95.762,502.431             255.898,401.21 416.035,502.431 369.263,318.842      "></polygon>    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>  <g>     <polygon points="512,197.816 325.961,185.585 255.898,9.569 185.835,185.585 0,197.816 142.534,318.842 95.762,502.431             255.898,401.21 416.035,502.431 369.263,318.842      "></polygon>    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>  <g>     <polygon points="512,197.816 325.961,185.585 255.898,9.569 185.835,185.585 0,197.816 142.534,318.842 95.762,502.431             255.898,401.21 416.035,502.431 369.263,318.842      "></polygon>    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>  <g>     <polygon points="512,197.816 325.961,185.585 255.898,9.569 185.835,185.585 0,197.816 142.534,318.842 95.762,502.431             255.898,401.21 416.035,502.431 369.263,318.842      "></polygon>    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>  <g>     <polygon points="512,197.816 325.961,185.585 255.898,9.569 185.835,185.585 0,197.816 142.534,318.842 95.762,502.431             255.898,401.21 416.035,502.431 369.263,318.842      "></polygon>    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>                                               
+                                    </div>
+                                </div> 
+                            </div>
                         </div>
                     </div>
-                    <div class="widget widget-listings style"> 
-                        <h3 class="widget-title title-list">
-                            Featured listings
-                        </h3>                                                                                                                        
-                        <div class="box-listings flex hover-img3">
-                            <div class="img-listings img-style3">
-                                <img src="{% static 'assets/images/img-box/sidebar-listings-1.jpg' %}" alt="images">
-                            </div>
-                            <div class="content link-style-1">
-                                <a class="fs-16 lh-24" href="property-detail-v1.html">Gorgeous Apartment Building</a>
-                                <h4>$7,500</h4>
-                            </div>
-                        </div>
-                        <div class="box-listings flex hover-img3">
-                            <div class="img-listings img-style3">
-                                <img src="{% static 'assets/images/img-box/sidebar-listings-2.jpg' %}" alt="images">
-                            </div>
-                            <div class="content link-style-1">
-                                <a class="fs-16 lh-24" href="property-detail-v1.html">Gorgeous Apartment Building</a>
-                                <h4>$7,500</h4>
-                            </div>
-                        </div>
-                        <div class="box-listings flex hover-img3">
-                            <div class="img-listings img-style3">
-                                <img src="{% static 'assets/images/img-box/sidebar-listings-3.jpg' %}" alt="images">
-                            </div>
-                            <div class="content link-style-1">
-                                <a class="fs-16 lh-24" href="property-detail-v1.html">Gorgeous Apartment Building</a>
-                                <h4>$7,500</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget widget-estate">
-                        <h3 class="widget-title title-news">
-                            Real estate near you
-                        </h3>                       
-                        <ul class="group-estate flex">
-                            <li class="box-estate hover-img2">
-                                <div class="thumb img-style2 ">
-                                    <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-1.jpg' %}" alt="images">
-                                </div>
-                                <div class="content">    
-                                    <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Moncton</a> </div>                              
-                                    <p class="fs-12 lh-16 text-color-1">1570 listing</p>
-                                </div>
-                            </li>
-                            <li class="box-estate hover-img2">
-                                <div class="thumb img-style2 ">
-                                    <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-2.jpg' %}" alt="images">
-                                </div>
-                                <div class="content">    
-                                    <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Mississauga</a> </div>                              
-                                    <p class="fs-12 lh-16 text-color-1">1570 listing</p>
-                                </div>
-                            </li>
-                            <li class="box-estate hover-img2">
-                                <div class="thumb img-style2 ">
-                                    <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-3.jpg' %}" alt="images">
-                                </div>
-                                <div class="content">    
-                                    <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Halifax</a> </div>                              
-                                    <p class="fs-12 lh-16 text-color-1">1570 listing</p>
-                                </div>
-                            </li>
-                            <li class="box-estate hover-img2">
-                                <div class="thumb img-style2 ">
-                                    <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-4.jpg' %}" alt="images">
-                                </div>
-                                <div class="content">    
-                                    <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Ottawa</a> </div>                              
-                                    <p class="fs-12 lh-16 text-color-1">1570 listing</p>
-                                </div>
-                            </li>
-                            <li class="box-estate hover-img2">
-                                <div class="thumb img-style2 ">
-                                    <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-5.jpg' %}" alt="images">
-                                </div>
-                                <div class="content">    
-                                    <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Iqaluit</a> </div>                              
-                                    <p class="fs-12 lh-16 text-color-1">1570 listing</p>
-                                </div>
-                            </li>
-                            <li class="box-estate hover-img2">
-                                <div class="thumb img-style2 ">
-                                    <img class="img2" src="{% static 'assets/images/img-box/sidebar-estate-6.jpg' %}" alt="images">
-                                </div>
-                                <div class="content">    
-                                    <div class="title link-style-3 fw-6 lh-18"><a href="properties-map-v1.html">Toronto</a> </div>                              
-                                    <p class="fs-12 lh-16 text-color-1">1570 listing</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div> 
-                    <div class="widget widget-ads">  
-                        <div class="box-ads">
-                            <div class="content relative z-2">
-                                <h3 class="link-style-3"><a href="property-detail-v1.html">Gorgeous Apartment Building</a> </h3>
-                                <div class="text-addres "><p class="p-12 text-color-1 icon-p">58 Hullbrook Road, Billesley, B13 0LA</p></div>
-                                <div class="star flex">
-                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>  <g>     <polygon points="512,197.816 325.961,185.585 255.898,9.569 185.835,185.585 0,197.816 142.534,318.842 95.762,502.431             255.898,401.21 416.035,502.431 369.263,318.842      "></polygon>    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
-                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>  <g>     <polygon points="512,197.816 325.961,185.585 255.898,9.569 185.835,185.585 0,197.816 142.534,318.842 95.762,502.431             255.898,401.21 416.035,502.431 369.263,318.842      "></polygon>    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
-                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>  <g>     <polygon points="512,197.816 325.961,185.585 255.898,9.569 185.835,185.585 0,197.816 142.534,318.842 95.762,502.431             255.898,401.21 416.035,502.431 369.263,318.842      "></polygon>    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
-                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>  <g>     <polygon points="512,197.816 325.961,185.585 255.898,9.569 185.835,185.585 0,197.816 142.534,318.842 95.762,502.431             255.898,401.21 416.035,502.431 369.263,318.842      "></polygon>    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
-                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>  <g>     <polygon points="512,197.816 325.961,185.585 255.898,9.569 185.835,185.585 0,197.816 142.534,318.842 95.762,502.431             255.898,401.21 416.035,502.431 369.263,318.842      "></polygon>    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>                                               
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-            </aside>
+                </aside>
+            </div>
         </div>
     </div>
-</div>
 </section>
 
 <section class="flat-sale-detail flat-sale wg-dream wg-dots tf-section" >
@@ -793,10 +715,10 @@
         <div class="row">                      
             <div class="col-lg-12">
                 <div class="heading-section ">
-                 <div class="title-heading fs-30 lh-45 fw-7">Featured properties</div>
-                 <p class="text-color-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel lobortis justo</p>
-             </div>
-             <div class="swiper-container2" >    
+                   <div class="title-heading fs-30 lh-45 fw-7">Featured properties</div>
+                   <p class="text-color-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel lobortis justo</p>
+               </div>
+               <div class="swiper-container2" >    
                 <div class="one-carousel owl-carousel owl-theme">
                     <div class="slide-item">
                         <div class="box box-dream hv-one">
@@ -1118,7 +1040,7 @@
                     </div>
                 </div>
                 <div class="mark-img">
-                    <img src="{% static 'assets/images/mark/mark-contact2.png" alt="images">
+                    <img src="{% static 'assets/images/mark/mark-contact2.png' %}" alt="images">
                 </div>
             </div>
         </div>

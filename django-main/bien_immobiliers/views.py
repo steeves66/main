@@ -59,10 +59,12 @@ def product_list(request, action):
 
 def product_details(request, product_id):
     product = get_object_or_404(Bien, id=product_id, visible=True)
-    pieces_int = BienPiece.objects.filter(bien=product, interieur=True)
-    pieces_ext = BienPiece.objects.filter(bien=product, interieur=False)
-    localisation = BienLocalisation.objects.filter(bien=product)
-    plans = BienMedia.objects.filter(bien=product, media_type="pln")
+    pieces_int = BienPiece.objects.filter(bien=product, commodite=True)
+    pieces_ext = BienPiece.objects.filter(bien=product, commodite=False)
+    localisation = BienLocalisation.objects.filter(bien=product).order_by('localisation__ordre')
+
+    plans = BienMedia.objects.filter(bien=product, media_type="pln", niveau__isnull=False)
+
     images = BienMedia.objects.filter(bien=product, media_type="img")
     docs = product.docs
 

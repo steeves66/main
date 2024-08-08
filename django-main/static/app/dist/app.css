@@ -10482,7 +10482,7 @@ gray-40 {
 .inter > label {
   flex-grow: 1;
   width: 33%;
-  height: 20px;
+/*  height: 20px;*/
 }
 
 
@@ -10497,3 +10497,18 @@ gray-40 {
   border-radius: 5px;
   margin-right: 20px;
 }
+
+.grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+            gap: 16px; /* Space between items */
+/*            padding: 16px;*/
+        }
+        .grid-item {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+

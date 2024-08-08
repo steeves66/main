@@ -124,6 +124,9 @@ class LocalisationType(models.Model):
     
     def __str__(self):
         return self.nom
+
+    class Meta:
+        ordering = ['ordre'] 
     
 
 class Statut(models.Model):
@@ -157,27 +160,41 @@ class Bien(models.Model):
     pieces = models.ManyToManyField(Piece, through='BienPiece')
     medias = models.ManyToManyField(MediaType, through='BienMedia')
     docs = models.ManyToManyField(Doc, through='BienDoc')
-    localisation = models.ManyToManyField(LocalisationType, through='BienLocalisation')
+    localisations = models.ManyToManyField(LocalisationType, through='BienLocalisation')
     promotion_immobiliere = models.BooleanField(default=False)         # if bien immobilier
     featured = models.BooleanField(default=False)
     utilisation = models.ForeignKey(Utilisation, on_delete=models.CASCADE, null=True, blank=True, related_name="biens")
     type_maison = models.ForeignKey(TypeMaison, on_delete=models.SET_NULL, null=True, blank=True, related_name="biens")
     nb_piece = models.IntegerField(null=True, blank=True)
     nb_etage = models.IntegerField(null=True, blank=True)             # pour les immeubles
-    nb_appartements = models.IntegerField(null=True, blank=True)      # pour les immeubles
+    nb_appartements = models.IntegerField(null=True, blank=True)        # pour les immeubles
     description = models.TextField(null=True, blank=True)
     annee_construction = models.CharField(max_length=50, null=True, blank=True)
     commodites = models.ManyToManyField(Commodite, related_name="biens")
+    niveau = models.ManyToManyField(Niveau, through='BienNiveau')
+
     
-    def __str__(self):        
-        return self.type_bien.nom
+    def __str__(self):       
+        if self.type_bien.code == "msn":
+            return f"{self.type_bien.nom} - {self.type_maison.nom} - {self.nb_piece} pièces "
+        return f"{self.type_bien.nom} "
     
     def localisation(self):
-        bl = BienLocalisation.objects.filter(bien=self).values_list('valeur', flat=True)
+        bl = BienLocalisation.objects.filter(bien=self).values_list('valeur', flat=True).order_by('localisation__ordre')
         concatenated_names = " - ".join(bl)
         if concatenated_names.endswith(" - "):
             concatenated_names = concatenated_names[:-1]
         return concatenated_names.title()  
+
+
+class BienNiveau(models.Model):
+    bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
+    niveau = models.ForeignKey(Niveau, on_delete=models.CASCADE)
+    superficie = models.FloatField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.bien} - {self.niveau.code}"
 
 
 class BienLocalisation(models.Model):
@@ -187,13 +204,13 @@ class BienLocalisation(models.Model):
     
 
 class BienPiece(models.Model):
-    bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
     piece = models.ForeignKey(Piece, on_delete=models.CASCADE)
-    nombre = models.IntegerField()
+    # nombre = models.IntegerField()
     superficie = models.FloatField(null=True, blank=True)
-    interieur = models.BooleanField(default=True)
+    commodite = models.BooleanField(default=True)                      # si pièce ou espace est  commodité d'une maison si cour arriere - avant - jardin - buanderie - terrain de jeux
     description = models.TextField(null=True, blank=True)
-    niveau = models.ForeignKey(Niveau, on_delete=models.CASCADE, null=True, blank=True)
+    bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
+    niveau = models.ForeignKey(BienNiveau, on_delete=models.CASCADE, null=True, blank=True)
 
     # class Meta:
     #     unique_together = ('bien', 'piece')
@@ -203,9 +220,12 @@ class BienMedia(models.Model):
     bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
     media_type = models.ForeignKey(MediaType, on_delete=models.SET_NULL, null=True)
     url = models.ImageField(upload_to='medias')
-    nom = models.CharField(max_length=50, null=True, blank=True)
+    # nom = models.CharField(max_length=50, null=True, blank=True)
     detail = models.BooleanField(default=False, null=True, blank=True)      # Si ce media est pour la page detail
-    niveau = models.ForeignKey(Niveau, on_delete=models.CASCADE, null=True, blank=True)
+    bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
+    niveau = models.ForeignKey(BienNiveau, on_delete=models.CASCADE, null=True, blank=True)
+    piece = models.ForeignKey(BienPiece, on_delete=models.CASCADE, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     # class Meta:
     #     unique_together = ('bien', 'media_type')

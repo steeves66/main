@@ -9,6 +9,7 @@ admin.site.register(Niveau)
 admin.site.register(Piece)
 admin.site.register(BienLocalisation)
 admin.site.register(Commodite)
+admin.site.register(BienNiveau)
 
 
 class BienPieceInline(admin.TabularInline):
@@ -50,7 +51,7 @@ class BienAdmin(admin.ModelAdmin):
     inlines = (BienPieceInline, BienMediaInline, BienLocalisationInline, BienDocInline, )
     fieldsets = (
         ('Dépositaires', {'fields': ('depositaire',)}),
-        ('biens', {'fields': ('type_bien', 'type_maison', 'nb_piece', 'utilisation', 'superficie', 'superficie_habitable', 'standing', 'commodites',)}),
+        ('biens', {'fields': ('type_bien', 'type_maison', 'nb_piece', 'utilisation', 'superficie', 'superficie_habitable', 'standing', 'commodites',  )}),
         ('Coût', {'fields': ('mode_commercial', 'prix', )}),
         ('Bien immobiliers', {'fields': ('promotion_immobiliere', 'apport_initial', 'cout_dossier',)}),
         ('Immeuble', {'fields': ('nb_etage', 'nb_appartements',)}),
