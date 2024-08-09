@@ -220,8 +220,6 @@ class BienMedia(models.Model):
     bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
     media_type = models.ForeignKey(MediaType, on_delete=models.SET_NULL, null=True)
     url = models.ImageField(upload_to='medias')
-    # nom = models.CharField(max_length=50, null=True, blank=True)
-    detail = models.BooleanField(default=False, null=True, blank=True)      # Si ce media est pour la page detail
     bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
     niveau = models.ForeignKey(BienNiveau, on_delete=models.CASCADE, null=True, blank=True)
     piece = models.ForeignKey(BienPiece, on_delete=models.CASCADE, null=True, blank=True)
