@@ -189,3 +189,7 @@ EMAIL_PORT = 1025
 # EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False
 # DEFAULT_FROM_EMAIL = 'default from email'
+
+
+
+CART_SESSION_ID = 'cart'
