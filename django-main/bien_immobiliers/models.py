@@ -186,6 +186,18 @@ class Bien(models.Model):
             concatenated_names = concatenated_names[:-1]
         return concatenated_names.title()  
 
+    def chambre(self):
+        pb = BienPiece.objects.filter(bien=self, piece__code__startswith='ch')
+        return len(pb)
+
+    def salon(self):
+        pb = BienPiece.objects.filter(bien=self, piece__code__startswith='sal')
+        return len(pb)
+
+    def details_images(self):
+        imgs = BienMedia.objects.filter(bien=self, media_type__code__startswith="imd")
+        return imgs
+
 
 class BienNiveau(models.Model):
     bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
