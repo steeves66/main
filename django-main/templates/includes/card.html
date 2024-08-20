@@ -27,7 +27,7 @@
         <h3 class="link-style-1">
             <a href="{% url 'product_details' product_id=item.id %}">
                 {% if item.type_bien.code == 'msn' %}
-                    {{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces
+                {{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces
                 {% endif %}
 
                 {{item.type_bien.nom|capfirst}}
@@ -40,19 +40,19 @@
         <div class="money fs-20 fw-8 font-2 text-color-3"><a href="property-detail-v1.html">{{ item.prix}} F</a></div>  
         <div class="icon-box">
             {% if item.type_bien.code == 'msn' %}
-                <div class="icons icon-1 flex"><span>Beds: </span><span class="fw-6">4</span></div>
-                <div class="icons icon-2 flex"><span>Baths: </span><span class="fw-6">2</span></div>
-                <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150 m<sup>2</sup> </span></div>
+            <div class="icons icon-1 flex"><span>Beds: </span><span class="fw-6">4</span></div>
+            <div class="icons icon-2 flex"><span>Baths: </span><span class="fw-6">2</span></div>
+            <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150 m<sup>2</sup> </span></div>
             {% endif %}
 
             {% if item.type_bien.code == 'imb' %}
-                <div class="icons icon-1 flex"><span>level: </span><span class="fw-6">4</span></div>
-                <div class="icons icon-2 flex"><span>appartment: </span><span class="fw-6">2</span></div>
-                <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150 m<sup>2</sup> </span></div>
+            <div class="icons icon-1 flex"><span>level: </span><span class="fw-6">4</span></div>
+            <div class="icons icon-2 flex"><span>appartment: </span><span class="fw-6">2</span></div>
+            <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150 m<sup>2</sup> </span></div>
             {% endif %}
 
             {% if item.type_bien.code == 'terr' %}
-                <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150 m<sup>2</sup> </span></div>
+            <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150 m<sup>2</sup> </span></div>
             {% endif %}
         </div>
         <div class="img-box flex justify-space align-center">

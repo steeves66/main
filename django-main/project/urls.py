@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from debug_toolbar.toolbar import debug_toolbar_urls
-from .views import home, test
+from .views import home
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -10,7 +10,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', home, name='home'),
-    path('test/', test),
     path('accounts/', include('allauth.urls')),
     path('users/', include('users.urls')),
     path('biens/', include('bien_immobiliers.urls')),

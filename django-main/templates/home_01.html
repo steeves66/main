@@ -274,10 +274,10 @@
                         <div class="box-tab center">
                             <ul class="menu-tab tab-title flex justify-center">
                                 <li class="item-title active hv-tool" data-tooltip="">
-                                    <h5 class="inner">Maisons</h5>
+                                    <a href="{% url 'product_list' type='type_maison' filter='mss' %}"><h5 class="inner">Maisons</h5></a>
                                 </li>
                                 <li class="item-title active hv-tool" data-tooltip="">
-                                    <h5 class="inner"> Maison intelligente  </h5>
+                                    <a href="{% url 'product_list' type='type_maison' filter='imb' %}"><h5 class="inner"> Immeubles </h5></a>                                    
                                 </li>
                                 <li class="item-title active hv-tool" data-tooltip="">
                                     <h5 class="inner ">Appartements</h5>
@@ -286,7 +286,7 @@
                                     <h5 class="inner"> Terrains </h5>
                                 </li>
                                 <li class="item-title active hv-tool" data-tooltip="">
-                                    <h5 class="inner">Villa</h5>
+                                    <h5 class="inner">Villas</h5>
                                 </li>
                                 <li class="item-title active hv-tool" data-tooltip="">
                                     <h5 class="inner"> Duplex </h5>
@@ -305,7 +305,7 @@
                                                 <span class="featured style fs-12 fw-6">{{ item.mode_commercial }}</span>  
                                                 <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
                                                 <div class="swiper-container noo carousel-2 img-style" >    
-                                                    <a href="property-detail-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+                                                    <a href="{% url 'product_details' item.id %}" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
                                                     <div class="swiper-wrapper">
                                                         {% for media in item.details_images %}
                                                         <div class="swiper-slide">
@@ -320,7 +320,7 @@
                                             </div>
                                             <div class="content">
                                                 <h3 class="link-style-1">
-                                                    <a href="{% url 'product_list' action=1 %}">
+                                                    <a href="#">
                                                         {% if item.type_bien.code == 'msn' %}
                                                             {{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces
                                                         {% endif %}
@@ -333,7 +333,7 @@
                                                     {{item.localisation|capfirst}} {% if item.type_bien.code == 'msn' %} {{ item.nb_piece }} {% endif %}
                                                     </p>
                                                 </div>
-                                                <div class="money fs-18 fw-6 text-color-3"><a href="property-detail-v1.html">F {{ item.nb_piece }}</a></div>  
+                                                <div class="money fs-18 fw-6 text-color-3"><a href="{% url 'product_details' item.id%}">F {{ item.nb_piece }}</a></div>  
                                                 <div class="icon-box flex">
                                                     {% if item.type_bien.code == 'msn' %}
                                                         <div class="icons icon-1 flex"><span>Chambre: </span><span class="fw-6">{{item.chambre}}</span></div>
@@ -395,17 +395,13 @@
                                         <span class="featured style fs-12 fw-6">{{ item.mode_commercial }}</span>  
                                         <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
                                         <div class="swiper-container noo carousel-2 img-style" >    
-                                            <a href="property-detail-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+                                            <a href="{% url 'product_details' item.id %}" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
                                             <div class="swiper-wrapper ">
-
-
-                                                        {% for media in item.details_images %}
-                                                        <div class="swiper-slide">
-                                                            <img src="{{media.url.url}}" alt="images">
-                                                        </div>
-                                                        {% endfor %}
-
-
+                                            {% for media in item.details_images %}
+                                                <div class="swiper-slide">
+                                                    <img src="{{media.url.url}}" alt="images">
+                                                </div>
+                                            {% endfor %}
                                             </div>
                                             <div class="pagi2"><div class="swiper-pagination2" >  </div> </div>
                                             <div class="swiper-button-next2 " ><i class="fal fa-arrow-right"></i></div>
@@ -413,9 +409,9 @@
                                         </div>
                                     </div>
                                     <div class="content">
-                                        <h3 class="link-style-1"><a href="property-detail-v1.html">{{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces</a> </h3>
+                                        <h3 class="link-style-1"><a href="{% url 'product_details' item.id %}">{{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces</a> </h3>
                                         <div class="text-address"><p class="p-12">{{item.localisation|capfirst}} {% if item.type_bien.code == 'msn' %} {{ item.nb_piece }} {% endif %}</p></div>
-                                        <div class="money fs-18 fw-6 text-color-3"><a href="property-detail-v1.html">CFA {{ item.prix}}</a></div>  
+                                        <div class="money fs-18 fw-6 text-color-3"><a href="{% url 'product_details' item.id%}">CFA {{ item.prix}}</a></div>  
                                         <div class="icon-box flex">
                                             <div class="icons icon-1 flex"><span>Chambre: </span><span class="fw-6">{{item.chambre}}</span></div>
                                             <div class="icons icon-2 flex"><span>Salon: </span><span class="fw-6">{{item.salon}}</span></div>
@@ -540,7 +536,7 @@
                                         <span class="featured style fs-12 fw-6">{{ item.mode_commercial }}</span>  
                                         <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
                                         <div class="swiper-container noo carousel-2 img-style" >    
-                                            <a href="property-detail-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+                                            <a href="{% url 'product_details' item.id%}" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
                                             <div class="swiper-wrapper ">
                                             {% for media in item.details_images %}
                                                 <div class="swiper-slide">
@@ -554,9 +550,9 @@
                                         </div>
                                     </div>
                                     <div class="content">
-                                        <h3 class="link-style-1"><a href="property-detail-v1.html">{{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces</a> </h3>
+                                        <h3 class="link-style-1"><a href="{% url 'product_details' item.id%}">{{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces</a> </h3>
                                         <div class="text-address"><p class="p-12">{{item.localisation|capfirst}} {% if item.type_bien.code == 'msn' %} {{ item.nb_piece }} {% endif %}</p></div>
-                                        <div class="money fs-18 fw-6 text-color-3"><a href="property-detail-v1.html">CFA {{ item.prix}}</a></div>  
+                                        <div class="money fs-18 fw-6 text-color-3"><a href="{% url 'product_details' item.id%}">CFA {{ item.prix}}</a></div>  
                                         <div class="icon-box flex">
                                             <div class="icons icon-1 flex"><span>Chambre: </span><span class="fw-6">{{item.chambre}}</span></div>
                                             <div class="icons icon-2 flex"><span>Salon: </span><span class="fw-6">{{item.salon}}</span></div>
@@ -797,11 +793,11 @@
                     <div class="flat-tabs themesflat-tabs">
                         <div class="box-tab center">
                             <ul class="menu-tab tab-title flex justify-center">
-                                <li class="item-title active hv-tool" data-tooltip="7 Property">
-                                    <h5 class="inner ">En vente</h5>
+                                <li class="item-title active hv-tool" data-tooltip="">
+                                    <h5 class="inner">En vente</h5>
                                 </li>
-                                <li class="item-title style hv-tool" data-tooltip="4 Property">
-                                    <h5 class="inner " > A louer </h5>
+                                <li class="item-title active style hv-tool" data-tooltip="">
+                                    <h5 class="inner"> A louer </h5>
                                 </li>
                             </ul>
                         </div>
@@ -810,215 +806,57 @@
                             <div class="content-inner tab-content">                            
                                 <div class="swiper-container2 "  >    
                                     <div class="sponsors-carousel owl-carousel owl-theme">
-                        {% for item in product_immobiliers %}
-                            <div class="slide-item">
-                                <div class="box box-dream hv-one">
-                                    <div class="image-group relative">
-                                        <!-- <span class="featured fs-12 fw-6">Mise en avant</span>    -->
-                                        <span class="featured style fs-12 fw-6">{{ item.mode_commercial }}</span>  
-                                        <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
-                                        <div class="swiper-container noo carousel-2 img-style" >    
-                                            <a href="property-detail-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
-                                            <div class="swiper-wrapper ">
+                                        {% for item in product_immobiliers %}
+                                            <div class="slide-item">
+                                                <div class="box box-dream hv-one">
+                                                    <div class="image-group relative">
+                                                        <!-- <span class="featured fs-12 fw-6">Mise en avant</span>    -->
+                                                        <span class="featured style fs-12 fw-6">{{ item.mode_commercial }}</span>  
+                                                        <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
+                                                        <div class="swiper-container owl carousel-2 img-style" >    
+                                                            <a href="{% url 'product_details' item.id%}" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+                                                            <div class="swiper-wrapper ">
 
 
-                                                        {% for media in item.details_images %}
-                                                        <div class="swiper-slide">
-                                                            <img src="{{media.url.url}}" alt="images">
+                                                                        {% for media in item.details_images %}
+                                                                        <div class="swiper-slide">
+                                                                            <img src="{{media.url.url}}" alt="images">
+                                                                        </div>
+                                                                        {% endfor %}
+
+
+                                                            </div>
+                                                            <div class="pagi2"><div class="swiper-pagination2" >  </div> </div>
+                                                            <div class="swiper-button-next2 " ><i class="fal fa-arrow-right"></i></div>
+                                                            <div class="swiper-button-prev2 " ><i class="fal fa-arrow-left"></i> </div>                                        
                                                         </div>
-                                                        {% endfor %}
-
-
-                                            </div>
-                                            <div class="pagi2"><div class="swiper-pagination2" >  </div> </div>
-                                            <div class="swiper-button-next2 " ><i class="fal fa-arrow-right"></i></div>
-                                            <div class="swiper-button-prev2 " ><i class="fal fa-arrow-left"></i> </div>                                        
-                                        </div>
-                                    </div>
-                                    <div class="content">
-                                        <h3 class="link-style-1"><a href="property-detail-v1.html">{{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces</a> </h3>
-                                        <div class="text-address"><p class="p-12">{{item.localisation|capfirst}} {% if item.type_bien.code == 'msn' %} {{ item.nb_piece }} {% endif %}</p></div>
-                                        <div class="money fs-18 fw-6 text-color-3"><a href="property-detail-v1.html">CFA {{ item.prix}}</a></div>  
-                                        <div class="icon-box flex">
-                                            <div class="icons icon-1 flex"><span>Chambre: </span><span class="fw-6">{{item.chambre}}</span></div>
-                                            <div class="icons icon-2 flex"><span>Salon: </span><span class="fw-6">{{item.salon}}</span></div>
-                                            <div class="icons icon-3 flex"><span></span><span class="fw-6">{{item.superficie}} m<sup>2</sup> </span></div>
-                                        </div>   
-                                        <div class="days-box flex justify-space align-center">
-                                            <!--  <a class="compare flex align-center fw-6" href="#">Compare</a> -->
-                                            {% if item.depositaire.personne_morale %}
-                                                <div class="img-author hv-tool" data-tooltip="{{item.depositaire.nom}}">
-                                                    <img src="{{item.depositaire.logo.url}}" alt="images">
-                                                </div>
-                                            {% else %}
-                                                <div class="img-author hv-tool" data-tooltip="{{item.depositaire.nom}} {{item.depositaire.prenom}}">
-                                                    <img src="{{item.depositaire.logo.url}}" alt="images">
-                                                </div>
-                                            {% endif %}
-                                            <!-- <div class="days">3 years ago</div> -->
-                                        </div>                                           
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="content-inner tab-content">                            
-                                <div class="swiper-container "  >    
-                                    <div class="sponsors-carousel owl-carousel owl-theme">
-                                        <div class="slide-item">
-                                            <div class="box box-dream hv-one">
-                                                <div class="image-group relative ">
-                                                    <span class="featured fs-12 fw-6">Mise en avant</span>    
-                                                    <span class="featured style fs-12 fw-6">En vente</span>  
-                                                    <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
-                                                    <div class="swiper-container noo carousel-2 img-style"  >    
-                                                        <a href="property-detail-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
-                                                        <div class="swiper-wrapper ">
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-7.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-2.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-3.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-4.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-5.jpg' %}" alt="images"></div>
-                                                        </div>
-                                                        <div class="pagi2"><div class="swiper-pagination2" >  </div> </div>
-                                                        <div class="swiper-button-next2 " ><i class="fal fa-arrow-right"></i></div>
-                                                        <div class="swiper-button-prev2 " ><i class="fal fa-arrow-left"></i> </div>                                        
+                                                    </div>
+                                                    <div class="content">
+                                                        <h3 class="link-style-1"><a href="{% url 'product_details' item.id%">{{ item.type_maison.nom|capfirst }} - {{ item.nb_piece }} pièces</a> </h3>
+                                                        <div class="text-address"><p class="p-12">{{item.localisation|capfirst}} {% if item.type_bien.code == 'msn' %} {{ item.nb_piece }} {% endif %}</p></div>
+                                                        <div class="money fs-18 fw-6 text-color-3"><a href="{% url 'product_details' item.id%}">CFA {{ item.prix}}</a></div>  
+                                                        <div class="icon-box flex">
+                                                            <div class="icons icon-1 flex"><span>Chambre: </span><span class="fw-6">{{item.chambre}}</span></div>
+                                                            <div class="icons icon-2 flex"><span>Salon: </span><span class="fw-6">{{item.salon}}</span></div>
+                                                            <div class="icons icon-3 flex"><span></span><span class="fw-6">{{item.superficie}} m<sup>2</sup> </span></div>
+                                                        </div>   
+                                                        <div class="days-box flex justify-space align-center">
+                                                            <!--  <a class="compare flex align-center fw-6" href="#">Compare</a> -->
+                                                            {% if item.depositaire.personne_morale %}
+                                                                <div class="img-author hv-tool" data-tooltip="{{item.depositaire.nom}}">
+                                                                    <img src="{{item.depositaire.logo.url}}" alt="images">
+                                                                </div>
+                                                            {% else %}
+                                                                <div class="img-author hv-tool" data-tooltip="{{item.depositaire.nom}} {{item.depositaire.prenom}}">
+                                                                    <img src="{{item.depositaire.logo.url}}" alt="images">
+                                                                </div>
+                                                            {% endif %}
+                                                            <!-- <div class="days">3 years ago</div> -->
+                                                        </div>                                           
                                                     </div>
                                                 </div>
-                                                <div class="content">
-                                                    <h3 class="link-style-1"><a href="property-detail-v1.html">Gorgeous Apartment Building</a> </h3>
-                                                    <div class="text-address"><p class="p-12">58 Hullbrook Road, Billesley, B13 0LA</p></div>
-                                                    <div class="money fs-18 fw-6 text-color-3"><a href="property-detail-v1.html">$7,500</a></div>  
-                                                    <div class="icon-box flex">
-                                                        <div class="icons icon-1 flex"><span>Beds: </span><span class="fw-6">4</span></div>
-                                                        <div class="icons icon-2 flex"><span>Baths: </span><span class="fw-6">2</span></div>
-                                                        <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150</span></div>
-                                                    </div>   
-                                                    <div class="days-box flex justify-space align-center">
-                                                        <!--  <a class="compare flex align-center fw-6" href="#">Compare</a> -->
-                                                        <div class="img-author hv-tool" data-tooltip="Kathryn Murphy"><img src="{% static 'assets/images/author/author-1.jpg' %}" alt="images"></div>
-                                                        <div class="days">3 years ago</div>
-                                                    </div>                                           
-                                                </div>
                                             </div>
-                                        </div>
-                                        <!-- col 2 -->
-                                        <div class="slide-item">
-                                            <div class="box box-dream hv-one">
-                                                <div class="image-group relative ">
-                                                    <span class="featured fs-12 fw-6">Mise en avant</span>    
-                                                    <span class="featured style fs-12 fw-6">En vente</span>  
-                                                    <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
-                                                    <div class="swiper-container noo carousel-2 img-style"  >    
-                                                        <a href="property-detail-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
-                                                        <div class="swiper-wrapper ">
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-18.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-12.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-13.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-14.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-15.jpg' %}" alt="images"></div>
-                                                        </div>
-                                                        <div class="pagi2"><div class="swiper-pagination2" >  </div> </div>
-                                                        <div class="swiper-button-next2 " ><i class="fal fa-arrow-right"></i></div>
-                                                        <div class="swiper-button-prev2 " ><i class="fal fa-arrow-left"></i> </div>                                        
-                                                    </div>
-                                                </div>
-                                                <div class="content">
-                                                    <h3 class="link-style-1"><a href="property-detail-v1.html">Gorgeous Apartment Building</a> </h3>
-                                                    <div class="text-address"><p class="p-12">58 Hullbrook Road, Billesley, B13 0LA</p></div>
-                                                    <div class="money fs-18 fw-6 text-color-3"><a href="property-detail-v1.html">$7,500</a></div>  
-                                                    <div class="icon-box flex">
-                                                        <div class="icons icon-1 flex"><span>Beds: </span><span class="fw-6">4</span></div>
-                                                        <div class="icons icon-2 flex"><span>Baths: </span><span class="fw-6">2</span></div>
-                                                        <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150</span></div>
-                                                    </div>   
-                                                    <div class="days-box flex justify-space align-center">
-                                                        <!--  <a class="compare flex align-center fw-6" href="#">Compare</a> -->
-                                                        <div class="img-author hv-tool" data-tooltip="Kathryn Murphy"><img src="{% static 'assets/images/author/author-1.jpg' %}" alt="images"></div>
-                                                        <div class="days">3 years ago</div>
-                                                    </div>                                           
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- col 3 -->
-                                        <div class="slide-item">
-                                            <div class="box box-dream hv-one">
-                                                <div class="image-group relative ">
-                                                    <span class="featured fs-12 fw-6">Mise en avant</span>    
-                                                    <span class="featured style fs-12 fw-6">En vente</span>  
-                                                    <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
-                                                    <div class="swiper-container noo carousel-2 img-style"  >    
-                                                        <a href="property-detail-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
-                                                        <div class="swiper-wrapper ">
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-9.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-22.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-23.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-24.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-25.jpg' %}" alt="images"></div>
-                                                        </div>
-                                                        <div class="pagi2"><div class="swiper-pagination2" >  </div> </div>
-                                                        <div class="swiper-button-next2 " ><i class="fal fa-arrow-right"></i></div>
-                                                        <div class="swiper-button-prev2 " ><i class="fal fa-arrow-left"></i> </div>                                        
-                                                    </div>
-                                                </div>
-                                                <div class="content">
-                                                    <h3 class="link-style-1"><a href="property-detail-v1.html">Gorgeous Apartment Building</a> </h3>
-                                                    <div class="text-address"><p class="p-12">58 Hullbrook Road, Billesley, B13 0LA</p></div>
-                                                    <div class="money fs-18 fw-6 text-color-3"><a href="property-detail-v1.html">$7,500</a></div>  
-                                                    <div class="icon-box flex">
-                                                        <div class="icons icon-1 flex"><span>Beds: </span><span class="fw-6">4</span></div>
-                                                        <div class="icons icon-2 flex"><span>Baths: </span><span class="fw-6">2</span></div>
-                                                        <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150</span></div>
-                                                    </div>   
-                                                    <div class="days-box flex justify-space align-center">
-                                                        <!--  <a class="compare flex align-center fw-6" href="#">Compare</a> -->
-                                                        <div class="img-author hv-tool" data-tooltip="Kathryn Murphy"><img src="{% static 'assets/images/author/author-1.jpg' %}" alt="images"></div>
-                                                        <div class="days">3 years ago</div>
-                                                    </div>                                           
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- col 4 -->
-                                        <div class="slide-item">
-                                            <div class="box box-dream hv-one">
-                                                <div class="image-group relative ">
-                                                    <span class="featured fs-12 fw-6">Mise en avant</span>    
-                                                    <span class="featured style fs-12 fw-6">En vente</span>  
-                                                    <span class="icon-bookmark"><i class="far fa-bookmark"></i></span> 
-                                                    <div class="swiper-container noo carousel-2 img-style"  >    
-                                                        <a href="property-detail-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
-                                                        <div class="swiper-wrapper ">
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-7.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-2.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-3.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-4.jpg' %}" alt="images"></div>
-                                                            <div class="swiper-slide"><img src="{% static 'assets/images/house/featured-5.jpg' %}" alt="images"></div>
-                                                        </div>
-                                                        <div class="pagi2"><div class="swiper-pagination2" >  </div> </div>
-                                                        <div class="swiper-button-next2 " ><i class="fal fa-arrow-right"></i></div>
-                                                        <div class="swiper-button-prev2 " ><i class="fal fa-arrow-left"></i> </div>                                        
-                                                    </div>
-                                                </div>
-                                                <div class="content">
-                                                    <h3 class="link-style-1"><a href="property-detail-v1.html">Gorgeous Apartment Building</a> </h3>
-                                                    <div class="text-address"><p class="p-12">58 Hullbrook Road, Billesley, B13 0LA</p></div>
-                                                    <div class="money fs-18 fw-6 text-color-3"><a href="property-detail-v1.html">$7,500</a></div>  
-                                                    <div class="icon-box flex">
-                                                        <div class="icons icon-1 flex"><span>Beds: </span><span class="fw-6">4</span></div>
-                                                        <div class="icons icon-2 flex"><span>Baths: </span><span class="fw-6">2</span></div>
-                                                        <div class="icons icon-3 flex"><span>Sqft: </span><span class="fw-6">1150</span></div>
-                                                    </div>   
-                                                    <div class="days-box flex justify-space align-center">
-                                                        <!--  <a class="compare flex align-center fw-6" href="#">Compare</a> -->
-                                                        <div class="img-author hv-tool" data-tooltip="Kathryn Murphy"><img src="{% static 'assets/images/author/author-1.jpg' %}" alt="images"></div>
-                                                        <div class="days">3 years ago</div>
-                                                    </div>                                           
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>

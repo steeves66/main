@@ -26,6 +26,3 @@ def home(request):
     return render(request, 'home_01.html', context)
 
 
-def test(request):
-    product_immobiliers = Bien.objects.filter(type_bien__code__exact='msn', promotion_immobiliere=True).order_by('-date_ajout')
-    return HttpResponse(len(product_immobiliers))
