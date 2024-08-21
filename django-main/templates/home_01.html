@@ -267,7 +267,7 @@
             <div class="row">                      
                 <div class="col-lg-12">
                     <div class="heading-section center">
-                        <h2>Propriétés en vedette</h2>
+                        <a href="{% url 'product_list' type='featured' filter='none' %}"><h2>Propriétés en vedette</h2></a>
                         <!-- <p class="text-color-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel lobortis justo</p> -->
                     </div>
                     <div class="flat-tabs themesflat-tabs">
@@ -280,16 +280,16 @@
                                     <a href="{% url 'product_list' type='type_maison' filter='imb' %}"><h5 class="inner"> Immeubles </h5></a>                                    
                                 </li>
                                 <li class="item-title active hv-tool" data-tooltip="">
-                                    <h5 class="inner ">Appartements</h5>
+                                    <a href="{% url 'product_list' type='type_maison' filter='apt' %}"><h5 class="inner ">Appartements</h5></a>
                                 </li>
                                 <li class="item-title active hv-tool" data-tooltip="">
-                                    <h5 class="inner"> Terrains </h5>
+                                    <a href="{% url 'product_list' type='type_bien' filter='terr' %}"><h5 class="inner"> Terrains </h5></a>
                                 </li>
                                 <li class="item-title active hv-tool" data-tooltip="">
-                                    <h5 class="inner">Villas</h5>
+                                    <a href="{% url 'product_list' type='type_maison' filter='vla' %}"><h5 class="inner">Villas</h5></a>
                                 </li>
                                 <li class="item-title active hv-tool" data-tooltip="">
-                                    <h5 class="inner"> Duplex </h5>
+                                    <a href="{% url 'product_list' type='type_maison' filter='dup' %}"><h5 class="inner"> Duplex </h5></a>
                                 </li>
                             </ul>
                         </div>
@@ -382,7 +382,8 @@
             <div class="row">                      
                 <div class="col-lg-12">
                     <div class="heading-section center">
-                        <h2>Propriétés à louer</h2>
+                        <a href="{% url 'product_list'  type='location' filter='none' %}"><h2>Propriétés à louer</h2></a>
+                        
                         <!-- <p class="text-color-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel lobortis justo</p> -->
                     </div>
                     <div class="swiper-container"  >    
@@ -523,7 +524,7 @@
             <div class="row">                      
                 <div class="col-lg-12">
                     <div class="heading-section center style2">
-                        <h2>Propriétés en vente</h2>
+                        <a href="{% url 'product_list' type='vente' filter='none' %}"><h2>Propriétés en vente</h2></a>
                         <!-- <p class="text-color-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel lobortis justo</p> -->
                     </div>
                     <div class="swiper-container2" >    
@@ -704,10 +705,10 @@
                                 <div class="box">
                                     <div class="images">
                                         <img src="{% static 'assets/images/img-box/find-your-10.jpg' %}" alt="images">
-                                        <a href="properties-map-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+                                        <a href="{% url 'product_list' type='ville' filter='abidjan' %}" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
                                     </div>
                                     <div class="content">
-                                        <h3 class="link-style-3"><a href="properties-map-v1.html">Abidjan</a></h3>
+                                        <h3 class="link-style-3"><a href="{% url 'product_list' type='ville' filter='abidjan' %}">Abidjan</a></h3>
                                         <!-- <p class="text-color-1">1570 listés</p> -->
                                     </div>
                                 </div>  
@@ -716,10 +717,10 @@
                                 <div class="box">
                                     <div class="images">
                                         <img src="{% static 'assets/images/img-box/find-your-11.jpg' %}" alt="images">
-                                        <a href="properties-map-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+                                        <a href="{% url 'product_list' type='ville' filter='bouake' %}" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
                                     </div>
                                     <div class="content">
-                                        <h3 class="link-style-3"><a href="properties-map-v1.html">Bouaké</a></h3>
+                                        <h3 class="link-style-3"><a href="{% url 'product_list' type='ville' filter='bouaké' %}">Bouaké</a></h3>
                                         <!-- <p class="text-color-1">1570 listés</p> -->
                                     </div>
                                 </div>  
@@ -728,10 +729,10 @@
                                 <div class="box">
                                     <div class="images">
                                         <img src="{% static 'assets/images/img-box/find-your-12.jpg' %}" alt="images">
-                                        <a href="properties-map-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+                                        <a href="{% url 'product_list' type='ville' filter='yamoussou' %}" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
                                     </div>
                                     <div class="content">
-                                        <h3 class="link-style-3"><a href="properties-map-v1.html">Yamoussoukro</a></h3>
+                                        <h3 class="link-style-3"><a href="{% url 'product_list' type='ville' filter='yamoussou' %}">Yamoussoukro</a></h3>
                                         <!-- <p class="text-color-1">1570 listés</p> -->
                                     </div>
                                 </div>  
@@ -740,10 +741,10 @@
                                 <div class="box">
                                     <div class="images">
                                         <img src="{% static 'assets/images/img-box/find-your-13.jpg' %}" alt="images">
-                                        <a href="properties-map-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+                                        <a href="{% url 'product_list' type='ville' filter='gagnoa' %}" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
                                     </div>
                                     <div class="content">
-                                        <h3 class="link-style-3"><a href="properties-map-v1.html">Gagnoa</a></h3>
+                                        <h3 class="link-style-3"><a href="{% url 'product_list' type='ville' filter='gagnoa' %}">Gagnoa</a></h3>
                                         <!-- <p class="text-color-1">1570 listés</p> -->
                                     </div>
                                 </div>  
@@ -752,10 +753,10 @@
                                 <div class="box">
                                     <div class="images">
                                         <img src="{% static 'assets/images/img-box/find-your-10.jpg' %}" alt="images">
-                                        <a href="properties-map-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+                                        <a href="{% url 'product_list' type='ville' filter='korhogo' %}" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
                                     </div>
                                     <div class="content">
-                                        <h3 class="link-style-3"><a href="properties-map-v1.html">Korhogo</a></h3>
+                                        <h3 class="link-style-3"><a href="{% url 'product_list' type='ville' filter='korhogo' %}">Korhogo</a></h3>
                                         <!-- <p class="text-color-1">1570 listés</p> -->
                                     </div>
                                 </div>  
@@ -764,10 +765,10 @@
                                 <div class="box">
                                     <div class="images">
                                         <img src="{% static 'assets/images/img-box/find-your-11.jpg' %}" alt="images">
-                                        <a href="properties-map-v1.html" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
+                                        <a href="{% url 'product_list' type='ville' filter='man' %}" class="icon-plus"><img src="{% static 'assets/images/icon/plus.svg' %}" alt="images"></a>
                                     </div>
                                     <div class="content">
-                                        <h3 class="link-style-3"><a href="properties-map-v1.html">Man</a></h3>
+                                        <h3 class="link-style-3"><a href="{% url 'product_list' type='ville' filter='man' %}">Man</a></h3>
                                         <!-- <p class="text-color-1">1570 listés</p> -->
                                     </div>
                                 </div>  
@@ -787,11 +788,11 @@
             <div class="row">                      
                 <div class="col-lg-12">
                     <div class="heading-section center">
-                        <h2>Nos biens immobiliers les plus prometteurs</h2>
+                        <a href="{% url 'product_list' type='bien_immobilier' filter='none' %}"><h2>Nos biens immobiliers les plus prometteurs</h2></a>                        
                         <!-- <p class="text-color-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel lobortis justo</p> -->
                     </div>
                     <div class="flat-tabs themesflat-tabs">
-                        <div class="box-tab center">
+                        <!-- <div class="box-tab center">
                             <ul class="menu-tab tab-title flex justify-center">
                                 <li class="item-title active hv-tool" data-tooltip="">
                                     <h5 class="inner">En vente</h5>
@@ -800,7 +801,7 @@
                                     <h5 class="inner"> A louer </h5>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                        
                         <div class="content-tab">
                             <div class="content-inner tab-content">                            
