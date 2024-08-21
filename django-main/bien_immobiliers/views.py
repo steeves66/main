@@ -10,6 +10,9 @@ from django.db.models import Prefetch
 from django.core.paginator import Paginator
 
 
+def test(request):
+    return HttpResponse('test')
+
 
 def product_details(request, product_id):
     product = get_object_or_404(Bien, id=product_id, visible=True)
@@ -31,39 +34,21 @@ def product_details(request, product_id):
         "images": images,
         "docs": docs,
     }
-
+    
     return render(request, 'biens_immobiliers/property-detail-v2.html', context)
-
-
-
-
-
-def test(request, type, filter):
-    match type:
-        case 'bien_immobilier':
-            product = Bien.objects.filter(promotion_immobiliere=True, visible=True).order_by('-date_ajout')
-
-        case 'mode_commercial':
-            product = Bien.objects.filter(mode_commercial__code__iexact=filter, visible=True).order_by('-date_ajout')
-
-        case 'ville':
-            product = Bien.objects.filter(bienlocalisation__localisation='vle', bienlocalisation__valeur__icontains=filter, visible=True).order_by('-date_ajout')
-
-        case 'type_maison':
-            product = Bien.objects.filter(type_maison__code__iexact=filter, visible=True).order_by('-date_ajout')
-
-        case 'type_bien':
-            product = Bien.objects.filter(type_bien__code__iexact=filter, visible=True).order_by('-date_ajout')
-
-        case 'none':
-            product = Bien.objects.filter(visible=True).order_by('-date_ajout')
-
-    return HttpResponse(len(product))
-
 
 
 def product_list(request, type, filter):
     match type:
+        case 'vente':
+            product = Bien.objects.filter(mode_commercial='vnt', visible=True).order_by('-date_ajout')
+
+        case 'location':
+            product = Bien.objects.filter(mode_commercial='loc', visible=True).order_by('-date_ajout')
+
+        case 'featured':
+            product = Bien.objects.filter(visible=True, featured=True)
+
         case 'bien_immobilier':
             product = Bien.objects.filter(promotion_immobiliere=True, visible=True).order_by('-date_ajout')
 
