@@ -42,7 +42,7 @@ class BienLocalisationInline(admin.TabularInline):
 class DepositaireAdmin(admin.ModelAdmin):
     inlines = (DepositaireContactInline, )
     fieldsets = (
-        ('Dépositaires', {'fields': ('personne_morale', ('nom', 'prenom',), ('logo', 'slogan',), )}),
+        ('Dépositaires', {'fields': ('personne_morale', ('nom', 'prenom',), 'logo', 'slogan', 'branding_images', )}),
         ('Localisation', {'fields': (('sous_prefecture', 'commune'), ('quartier', 'secteur'), 'gps',)}),
         )
     

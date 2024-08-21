@@ -61,7 +61,7 @@ class Depositaire(models.Model):
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50, blank=True, null=True)
     logo = models.ImageField(upload_to='depositaires/logos', null=True, blank=True)
-    slogan = models.CharField(max_length=50, null=True, blank=True)
+    slogan = models.TextField(max_length=50, null=True, blank=True)
     sous_prefecture = models.CharField(max_length=50, null=True, blank=True)
     commune = models.CharField(max_length=50, null=True, blank=True)
     quartier = models.CharField(max_length=50)
@@ -73,6 +73,7 @@ class Depositaire(models.Model):
     date_modif = models.DateField(auto_now=True)
     is_active = models.BooleanField(default=True)
     description = models.TextField(null=True, blank=True)
+    branding_images = models.ImageField(upload_to='depositaires/logos', null=True, blank=True)
     
     def __str__(self):
         return self.nom
@@ -250,8 +251,9 @@ class BienDoc(models.Model):
 
 
 class Temoignage(models.Model):
-    nom = models.CharField(max_length=100)
-    prenom =  models.CharField(max_length=100)
+    nom = models.CharField(max_length=100, null=True, blank=True)
+    prenom = models.CharField(max_length=100, null=True, blank=True)
     temoignages = models.TextField(null=True, blank=True)
     date_creation = models.DateField(auto_now_add=True)
     image_profil = models.ImageField(upload_to='biens/plans', null=True, blank=True)
+    fonction = models.CharField(max_length=100, null=True, blank=True)

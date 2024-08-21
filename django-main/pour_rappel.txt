@@ -4,6 +4,8 @@
 pour card: 404 * 428
 pour details: 471 * 338
 pour homepage: 471 * 338
+pour la section temoignages: 41 * 40 -- 72ppp * 72ppp
+pour la section des entreprises: 160 * 80
 
 ***** icon immobiliers
 	30 * 30
