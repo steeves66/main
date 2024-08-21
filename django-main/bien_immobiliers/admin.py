@@ -10,6 +10,7 @@ admin.site.register(Piece)
 admin.site.register(BienLocalisation)
 admin.site.register(Commodite)
 admin.site.register(BienNiveau)
+admin.site.register(Temoignage)
 
 
 class BienPieceInline(admin.TabularInline):

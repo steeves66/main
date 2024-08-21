@@ -48,6 +48,7 @@ class Cart:
 	"""
 		product_ids = self.cart.keys()
 
+<<<<<<< Updated upstream
 		# get the product objects and add them to the cart
 		products = Product.objects.filter(id__in=product_ids)
 		cart = self.cart.copy
@@ -58,6 +59,17 @@ class Cart:
 			item['total_price'] = item['price'] * item['quantity']
 			item['total_price'] = item['price'] * item['quantity']
 		yield item
+=======
+				# get the product objects and add them to the cart
+				products = Product.objects.filter(id__in=product_ids)
+				cart = self.cart.copy()
+				for product in products:
+						cart[str(product.id)]['product'] = product
+				for item in cart.values():
+						item['price'] = Decimal(item['price'])
+						item['total_price'] = item['price'] * item['quantity']
+				yield item
+>>>>>>> Stashed changes
 
 	def __len__(self):
 	"""

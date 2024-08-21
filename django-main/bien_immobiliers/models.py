@@ -247,3 +247,11 @@ class BienDoc(models.Model):
 
     # class Meta:
     #     unique_together = ('bien', 'doc')
+
+
+class Temoignage(models.Model):
+    nom = models.CharField(max_length=100)
+    prenom =  models.CharField(max_length=100)
+    temoignages = models.TextField(null=True, blank=True)
+    date_creation = models.DateField(auto_now_add=True)
+    image_profil = models.ImageField(upload_to='biens/plans', null=True, blank=True)
